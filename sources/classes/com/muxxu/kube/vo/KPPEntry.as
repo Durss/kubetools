@@ -1,0 +1,3 @@
+package com.muxxu.kube.vo {		/**	 * 	 * @author Francois	 */	public class KPPEntry {				private var _id:String;
+		private var _time:Number;
+								/* *********** *		 * CONSTRUCTOR *		 * *********** */		/**		 * Creates an instance of <code>KPPEntry</code>.		 */		public function KPPEntry(data:Object) {			_id = data.id;			_time = data.t;		}						/* ***************** *		 * GETTERS / SETTERS *		 * ***************** */				public function get id():String { return _id; }				public function get time():Number { return _time; }		/* ****** *		 * PUBLIC *		 * ****** */						/* ******* *		 * PRIVATE *		 * ******* */			}}

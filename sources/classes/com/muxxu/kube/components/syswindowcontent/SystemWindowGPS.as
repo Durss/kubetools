@@ -1,0 +1,13 @@
+package com.muxxu.kube.components.syswindowcontent {	import flash.text.TextFieldAutoSize;
+	import flash.events.Event;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import gs.easing.Linear;
+	import gs.TweenLite;
+	import com.muxxu.kube.graphics.CompassGraphic;
+	import com.nurun.components.text.CssTextField;
+	import flash.display.Sprite;
+		/**	 * 	 * @author Francois	 */	public class SystemWindowGPS extends Sprite {				private var _content:CssTextField;
+		private var _compass:CompassGraphic;
+		private var _bmp:Bitmap;
+								/* *********** *		 * CONSTRUCTOR *		 * *********** */		/**		 * Creates an instance of <code>SystemWindowGPS</code>.		 */		public function SystemWindowGPS() {			initialize();		}						/* ***************** *		 * GETTERS / SETTERS *		 * ***************** */		/**		 * Sets the map's bitmap data.		 */		public function set bitmapData(value:BitmapData):void {			_bmp.bitmapData = value;			computePositions();		}		/* ****** *		 * PUBLIC *		 * ****** */		/**		 * Populates the component		 */		public function populate(content:String, direction:String):void {			var rotation:Number = 0;			switch(direction) {				default:				case "n": rotation = 0; break;				case "ne": rotation = 45; break;				case "e": rotation = 90; break;				case "se": rotation = 135; break;				case "s": rotation = 180; break;				case "sw": rotation = 225; break;				case "w": rotation = 270; break;				case "nw": rotation = 315; break;			}			if(direction == null) {				if(contains(_compass)) removeChild(_compass);				if(contains(_bmp)) removeChild(_bmp);			}else{				addChild(_compass);				addChild(_bmp);			}			_content.wordWrap = false;			_content.autoSize = TextFieldAutoSize.LEFT;			_content.text = content;			if(_content.width > 200) {				_content.width = 200;				_content.wordWrap = true;			}			TweenLite.to(_compass._arrowMc, .25, {shortRotation:{rotation:rotation}, ease:Linear.easeNone});			computePositions();		}								/* ******* *		 * PRIVATE *		 * ******* */		/**		 * Initialize the class.		 */		private function initialize():void {			_content	= addChild(new CssTextField("sysWindowContent")) as CssTextField;			_compass	= addChild(new CompassGraphic()) as CompassGraphic;			_bmp		= addChild(new Bitmap()) as Bitmap;			computePositions();		}				/**		 * Resize and replace the elements.		 */		private function computePositions():void {			_compass.x = Math.round((_content.width - _compass.width) * .5);			_compass.y = Math.round(_content.height + 10);			_bmp.y = Math.round(_compass.y + _compass.height);			_bmp.x = Math.round((_compass.width - _bmp.width) * .5 + _compass.x);			dispatchEvent(new Event(Event.RESIZE));		}	}}

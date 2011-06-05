@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<languages>
+		<language code="fr">
+			<!-- Login -->
+			<label code="loginStepTitle"><![CDATA[Étape N°${nbr}]]></label>
+			<label code="loginStep1"><![CDATA[<br /><br /><br /><b>Rendez-vous à l'adresse suivante :</b><br /><br /><a href="http://muxxu.com/a/kubetools" class="link"><u>http://muxxu.com/a/kubetools </u></a>]]></label>
+			<label code="loginStep2"><![CDATA[Entrez les identifiants fournis par la page précédente (<a href="http://muxxu.com/a/kubetools" class="link"><u>ici</u></a>) :]]></label>
+			<label code="loginStep2UID"><![CDATA[User ID]]></label>
+			<label code="loginStep2PubKey"><![CDATA[Public Key]]></label>
+			<label code="loginStep3"><![CDATA[Pour continuer, vous devez autoriser l'application à accéder à vos informations personnelles.<br />Rendez vous à cette adresse pour autoriser l'accès à l'application <b>KubeTools</b> :<br /><br /><a href="${url}" class="link"><u>Cliquez ici</u></a>]]></label>
+			<label code="loginNextStep"><![CDATA[Suite]]></label>
+			<label code="loginPrevStep"><![CDATA[Retour]]></label>
+			<label code="loginServerError1"><![CDATA[Erreur SQL lors de l'id.]]></label>
+			<label code="loginServerError2"><![CDATA[Paramètres de requête manquants.]]></label>
+			<label code="loginServerError100"><![CDATA[Le serveur a renvoyé un code de résultat inconnu.]]></label>
+			<label code="loginNetworkError"><![CDATA[Erreur de connexion.]]></label>
+				
+			<!-- Common -->
+			<label code="error"><![CDATA[Erreur]]></label>
+			<label code="xmlError"><![CDATA[Format des données renvoyées<br />par le serveur invalide!]]></label>
+			<label code="windowTitle"><![CDATA[KubeTools v${version}]]></label>
+			<label code="mapEngineGotoOpenTxt"><![CDATA[Go to...]]></label>
+			<label code="mapEngineGotoSubmit"><![CDATA[OK]]></label>
+				
+			<!-- Main menu -->
+			<label code="pois"><![CDATA[POIs]]></label>
+			<label code="gallery"><![CDATA[Galerie]]></label>
+			<label code="generator"><![CDATA[KubeArt 2D]]></label>
+			<label code="generatorIso"><![CDATA[KubeArt 3D]]></label>
+			<label code="ads"><![CDATA[Annonces]]></label>
+			<label code="dolmens"><![CDATA[Dolmens]]></label>
+			<label code="gps"><![CDATA[GPS]]></label>
+			<label code="options"><![CDATA[Options]]></label>
+			<label code="workbench"><![CDATA[Atelier]]></label>
+			
+			<!-- Textures selector -->
+			<label code="upRB"><![CDATA[Dessus]]></label>
+			<label code="sideRB"><![CDATA[Côtés]]></label>
+			<label code="bottomRB"><![CDATA[Dessous]]></label>
+			
+			<!-- Generator -->
+			<label code="clearGrid"><![CDATA[Effacer la grille]]></label>
+			<label code="createFromFile"><![CDATA[Créer à partir d'une image]]></label>
+			<label code="createFromCam"><![CDATA[Créer depuis la webcam]]></label>
+			<label code="saveFile"><![CDATA[Enregistrer]]></label>
+			<label code="loadFile"><![CDATA[Charger]]></label>
+			<label code="statsButton"><![CDATA[Stats]]></label>
+			
+			<!-- toolbox -->
+			<label code="toolBoxTitleCam"><![CDATA[Webcam]]></label>
+			<label code="toolBoxTitleParams"><![CDATA[Paramètres]]></label>
+			<label code="toolBoxTitleStats"><![CDATA[Statistiques]]></label>
+			<label code="toolBoxImageExit"><![CDATA[Pressez la touche ENTRÉE pour quitter l'édition.]]></label>
+			<label code="toolBoxImageColorsMax"><![CDATA[Types de kubes<br />différents maximum :]]></label>
+			<label code="toolBoxCaptureCam"><![CDATA[Capturer]]></label>
+			<label code="toolBoxCaptureExit"><![CDATA[Quitter]]></label>
+			<label code="toolBoxStatsBagSize"><![CDATA[Capacité du sac à dos :]]></label>
+			<label code="toolBoxStatsContent"><![CDATA[- x${kubes} kubes<br />- x${waters} eau(x) vitale(s) = x${tokens} jetons<br />- x${roundTrips} aller(s)-retour(s)]]></label>
+			
+			<!-- Gallery -->
+			<label code="gallerySearchFormName"><![CDATA[Recherche :]]></label>
+			<label code="gallerySearchFormType"><![CDATA[Filtrer par types]]></label>
+			<label code="gallerySearchFormSubmit"><![CDATA[Rechercher]]></label>
+			<label code="gallerySearchFormHelp"><![CDATA[Rechercher les images d'une zone spécifique :<br /><font size="16">zone</font>:<b>x</b>;<b>y</b><br /><br />Rechercher par auteur :<br /><font size="16">author</font>:<b>xxx</b>]]></label>
+			<label code="galleryFormNameLabel"><![CDATA[Nom :]]></label>
+			<label code="galleryFormAuthorLabel"><![CDATA[Auteur :]]></label>
+			<label code="galleryFormZoneLabel"><![CDATA[Coordonnées :]]></label>
+			<label code="galleryFormZoneHideLabel"><![CDATA[Masquer]]></label>
+			<label code="galleryFormImageLabel"><![CDATA[Image :]]></label>
+			<label code="galleryFormTypeLabel"><![CDATA[Type :]]></label>
+			<label code="galleryFormOpener"><![CDATA[Envoyer une image]]></label>
+			<label code="galleryFormEntryTypePixelArt"><![CDATA[Kube-art]]></label>
+			<label code="galleryFormEntryTypeMonument"><![CDATA[Monument]]></label>
+			<label code="galleryFormEntryTypeLandscape"><![CDATA[Paysage]]></label>
+			<label code="galleryFormEntryTypeOther"><![CDATA[Autre]]></label>
+			<label code="galleryFormSubmitLabel"><![CDATA[Envoyer]]></label>
+			<label code="galleryVoteError"><![CDATA[Vote non enregistré.<br />Cause : <b>${cause}</b>]]></label>
+			<label code="galleryVoteError1"><![CDATA[Données envoyées invalides]]></label>
+			<label code="galleryVoteError2"><![CDATA[Erreur SQL lors de l'enregistrement en base de données.]]></label>
+			<label code="galleryVoteError3"><![CDATA[Le serveur a renvoyé un code de résultat inconnu.]]></label>
+			<label code="galleryVoteTotal"><![CDATA[<b>${nbr}</b> vote(s)]]></label>
+			<label code="galleryLoadingError"><![CDATA[Chargement de la galerie échoué.<br />Cause : <b>${cause}</b>]]></label>
+			<label code="galleryItemInfo"><![CDATA[Par ${author}<br />Zone ${x};${y}]]></label>
+			<label code="galleryOldWorld"><![CDATA[Création de l'ancien monde]]></label>
+			<!-- <label code="galleryOldWorld"><![CDATA[Création de l'ancien monde N°${nbr}]]></label>  -->
+			
+			<label code="galleryFormSuccess"><![CDATA[Votre image a bien été envoyée. Merci.]]></label>
+			<label code="galleryFormServerError1"><![CDATA[Fichier trop lourd. 200Ko max.]]></label>
+			<label code="galleryFormServerError2"><![CDATA[Upload échoué.]]></label>
+			<label code="galleryFormServerError3"><![CDATA[Le fichier doit être un fichier image.]]></label>
+			<label code="galleryFormServerError4"><![CDATA[Upload échoué.]]></label>
+			<label code="galleryFormServerError5"><![CDATA[Erreur SQL lors de l'enregistrement en base de données.]]></label>
+			<label code="galleryFormServerError6"><![CDATA[Une entrée du même nom existe déjà sur cette zone.]]></label>
+			<label code="galleryFormServerError7"><![CDATA[Le redimensionnement de l'image a échoué. Le fichier contient peut-être des données erronées.]]></label>
+			<label code="galleryFormServerError8"><![CDATA[Image trop grande. L'image peut mesurer au maximum 800x600px.]]></label>
+			<label code="galleryFormServerError9"><![CDATA[Création de l'icone échouée.]]></label>
+			<label code="galleryFormServerError100"><![CDATA[Le serveur a renvoyé un code de résultat inconnu.]]></label>
+			<label code="galleryFormServerError101"><![CDATA[Impossible de joindre le serveur.]]></label>
+			<label code="galleryFormServerError102"><![CDATA[Votre compte a été bloqué suite à un abus]]></label>
+			
+			<!-- Dolmens -->
+			<label code="dolmensLoadServerError1"><![CDATA[Erreur SQL lors du chargement depuis la base de données.]]></label>
+			<label code="dolmensLoadServerError2"><![CDATA[Paramètres de requête manquants.]]></label>
+			<label code="dolmensLoadServerError100"><![CDATA[Le serveur a renvoyé un code de résultat inconnu.]]></label>
+			<label code="dolmensLoadServerError101"><![CDATA[Impossible de joindre le serveur.]]></label>
+			<label code="dolmenFormServerError100"><![CDATA[Le serveur a renvoyé un code de résultat inconnu.]]></label>
+			<label code="dolmenFormServerError101"><![CDATA[Impossible de joindre le serveur.]]></label>
+			<label code="dolmenFormServerError102"><![CDATA[Votre compte a été bloqué suite à un abus]]></label>
+			<label code="dolmensZoneCoords"><![CDATA[Zone : [<b>${x}</b>][<b>${y}</b>]]]></label>
+			<label code="dolmensZoneTouched"><![CDATA[Marquer comme touché]]></label>
+			<label code="dolmensZoneDelete"><![CDATA[Supprimer]]></label>
+			<label code="dolmensFormOpener"><![CDATA[Ajouter un dolmen]]></label>
+			<label code="dolmensFormZoneLabel"><![CDATA[Coordonnées :]]></label>
+			<label code="dolmensFormSubmitLabel"><![CDATA[Envoyer]]></label>
+			<label code="dolmenFormSuccess"><![CDATA[Le dolmen a bien été enregistré. Merci.]]></label>
+			<label code="dolmenFormServerError1"><![CDATA[Erreur SQL lors de l'enregistrement en base de données.]]></label>
+			<label code="dolmenFormServerError2"><![CDATA[Ce dolmen est déjà enregistré.]]></label>
+			<label code="dolmenFormServerError3"><![CDATA[Paramètres de requête manquants.]]></label>
+			<label code="dolmenFormServerError100"><![CDATA[Le serveur a renvoyé un code de résultat inconnu.]]></label>
+			<label code="dolmenFormServerError101"><![CDATA[Impossible de joindre le serveur.]]></label>
+			<label code="dolmenFormServerError102"><![CDATA[Votre compte a été bloqué suite à un abus]]></label>
+			<label code="dolmenDelSuccess"><![CDATA[Dolmen supprimé]]></label>
+			<label code="dolmenDelServerError1"><![CDATA[Erreur SQL lors de la requête vers la base de données.]]></label>
+			<label code="dolmenDelServerError2"><![CDATA[Dolmen innexistant]]></label>
+			<label code="dolmenDelServerError3"><![CDATA[Paramètres de requête manquants.]]></label>
+			<label code="dolmenDelServerError100"><![CDATA[Le serveur a renvoyé un code de résultat inconnu.]]></label>
+			<label code="dolmenDelServerError101"><![CDATA[Impossible de joindre le serveur.]]></label>
+			<label code="dolmenDelServerError102"><![CDATA[Votre compte a été bloqué suite à un abus]]></label>
+			<label code="dolmenVoteSuccess"><![CDATA[Vote enregistré]]></label>
+			<label code="dolmenVoteServerError1"><![CDATA[Erreur SQL lors de l'enregistrement en base de données.]]></label>
+			<label code="dolmenVoteServerError2"><![CDATA[Dolmen innexistant]]></label>
+			<label code="dolmenVoteServerError3"><![CDATA[Paramètres de requête manquants.]]></label>
+			<label code="dolmenVoteServerError100"><![CDATA[Le serveur a renvoyé un code de résultat inconnu.]]></label>
+			<label code="dolmenVoteServerError101"><![CDATA[Impossible de joindre le serveur.]]></label>
+			<label code="dolmenVoteServerError102"><![CDATA[Votre compte a été bloqué suite à un abus]]></label>
+			<label code="dolmenSysWinStepper"><![CDATA[<b>Distance max <i>(zones)</i> :</b>]]></label>
+			<label code="dolmenSysWinNearest"><![CDATA[Dolmens alentours :<br />${list}]]></label>
+			<label code="dolmenSysWinNearestNone"><![CDATA[<i>- Aucun -</i>]]></label>
+			<label code="dolmenTouchedTitle"><![CDATA[Dolmens touchés :]]></label>
+			<label code="dolmenTouchedDetails"><![CDATA[Lorsque ce panneau est activé, les dolmens touchés dans le jeu sont répertoriés dans <split />la liste ci-dessous.<br />Vous pouvez ensuite choisir de les enregistrer ou non sur le serveur en les sélectionnant puis en validant.<br /><b><u>Attention</u></b> à bien vous placer sur la zone du dolmen avant de le toucher! L'application se base sur votre position courante puisqu'elle ne peut connaître celle du dolmen.<br /><br />L'application vous proposera également une liste des dolmens alentours dans une fenêtre séparée.]]></label>
+			<label code="dolmenSaveTouched"><![CDATA[Enregistrer les dolmens cochés]]></label>
+			
+			<!-- GPS -->
+			<label code="gpsHelpNext"><![CDATA[Etape suivante]]></label>
+			<label code="gpsHelpEnd"><![CDATA[Terminer]]></label>
+			<!-- <label code="gpsDirectionTemplate"><![CDATA[<b>Zone suivante :</b><br />[{X}][{Y}]<br /><i>{COMMENTS}</i><img src="http://www.muxxu.free.fr/kube/apps/kubetools/compass/{DIRECTION}.png" alt="{DIRECTION}" width="64" height="64" />]]></label> -->
+			<label code="gpsDirectionTemplate"><![CDATA[<b>Zone suivante :</b><br />[{X}][{Y}]<br /><span class="sysWindowMessage">Avancée : {PERCENT}%<br />{COMMENTS}</span>]]></label>
+			<!-- <label code="gpsArrivedTemplate"><![CDATA[<b>Vous êtes arrivé à destination!</b><br /><a href="javascript:setTuto(null);">- Fermer -</a>]]></label> -->
+			<label code="gpsArrivedTemplate"><![CDATA[<b>Vous êtes arrivé à destination!</b>]]></label>
+			<label code="gpsKppListTitle"><![CDATA[ID des KPP que vous avez uploadés :]]></label>
+			<label code="gpsKppFormSubmit"><![CDATA[Charger]]></label>
+			<label code="gpsFormOpener"><![CDATA[Options]]></label>
+			<label code="gpsFormHelp"><![CDATA[Relire l'aide]]></label>
+			<label code="gpsFormKPPID"><![CDATA[KPP ID]]></label>
+			<label code="gpsFormMyKPPs"><![CDATA[Mes KPPs]]></label>
+			<label code="gpsFormRegister"><![CDATA[Demarrer la capture]]></label>
+			<label code="gpsFormStopRegister"><![CDATA[Terminer la capture]]></label>
+			<label code="gpsFormStartGPS"><![CDATA[Démarrer le GPS]]></label>
+			<label code="gpsFormStopGPS"><![CDATA[Arrêter le GPS]]></label>
+			<label code="gpsFormClear"><![CDATA[Tout effacer]]></label>
+			<label code="gpsFormLoadPath"><![CDATA[Charger un chemin]]></label>
+			<label code="gpsFormLCSendError"><![CDATA[Erreur de connexion au jeu.]]></label>
+			<label code="gpsFormLCSecurityError"><![CDATA[Erreur de sandbox.]]></label>
+			<label code="gpsFormLCDataLengthError"><![CDATA[Le chemin est trop long pour être envoyé au jeu.]]></label>
+			<label code="gpsFormErase"><![CDATA[Gomme]]></label>
+			<label code="gpsFormAddInfos"><![CDATA[Ajouter infos]]></label>
+			<label code="gpsFormSavePath"><![CDATA[Enregistrer]]></label>
+			<label code="gpsFormUploadPath"><![CDATA[Uploader]]></label>
+			<label code="gpsFormInfosTitle"><![CDATA[Entrez un texte indicatif]]></label>
+			<label code="gpsFormInfosSubmit"><![CDATA[Enregistrer]]></label>
+			<label code="gpsFormToolTipCapture"><![CDATA[Démarre la capture de votre avancée dans le jeu.]]></label>
+			<label code="gpsFormToolTipSynch"><![CDATA[Synchronise le jeu avec le chemin en cours.]]></label>
+			<label code="gpsFormKPPDownloadError1"><![CDATA[ID invalide]]></label>
+			<label code="gpsFormKPPDownloadError101"><![CDATA[Impossible de joindre le serveur.]]></label>
+			
+			<!-- ADS -->
+			<label code="adsFormOpener"><![CDATA[Poster l'annonce]]></label>
+			<label code="adsFormTitle"><![CDATA[Titre de votre annonce <i>(50 caractères max)</i> * :]]></label>
+			<label code="adsFormDescription"><![CDATA[Description de votre annonce <i>(5865 caractères max)</i> :]]></label>
+			<label code="adsFormKubes"><![CDATA[Sélectionnez le nombre de kubes demandés ou échangés * :]]></label>
+			<label code="adsFormSubmit"><![CDATA[Poster mon annonce]]></label>
+			<label code="adsAddSuccess"><![CDATA[Votre annonce a été postée avec succés..]]></label>
+			<label code="adsAddServerError1"><![CDATA[Erreur SQL lors de l'enregistrement en base de données.]]></label>
+			<label code="adsAddServerError2"><![CDATA[Paramètres de requête manquants.]]></label>
+			<label code="adsAddServerError100"><![CDATA[Le serveur a renvoyé un code de résultat inconnu.]]></label>
+			<label code="adsAddServerError101"><![CDATA[Impossible de joindre le serveur.]]></label>
+			<label code="adsAddServerError102"><![CDATA[Votre compte a été bloqué suite à un abus.]]></label>
+			<label code="adsLoadServerError1"><![CDATA[Erreur SQL lors du chargement depuis la base de données.]]></label>
+			<label code="adsLoadServerError2"><![CDATA[Paramètres de requête manquants.]]></label>
+			<label code="adsLoadServerError101"><![CDATA[Impossible de joindre le serveur.]]></label>
+			
+			<!-- WORKBENCH -->
+			<label code="wbTitle"><![CDATA[Bienvenue dans l'Atelier de Travail !]]></label>
+			<label code="wbDescription"><![CDATA[L'atelier ne vous propose qu'une seule et unique petite chose, mesurer au kube près une distance entre deux kubes.<br />Pour se faire, posez simplement un Kube forum quelque part et cliquez dessus. Sa position exacte au kube près sera alors affichée dans la liste ci-dessous. Vous n'avez plus qu'à Utter votre kube et à faire de même plus loin pour mesurer la distance entre les deux points.<br /><br />Pour calculer la distance entre deux points tracez ensuite un cable entre les deux entrées voulues]]></label>
+			<label code="wbItemTitle"><![CDATA[<b>{TITLE}</b> : ({X}, {Y}, {Z})]]></label>
+			<label code="wbItemDistance"><![CDATA[<b>X : </b>{X} kube(s)<br /><b>Y : </b>{Y} kube(s)<br /><b>Z : </b>{Z} kube(s)]]></label>
+		</language>
+	</languages>
+</root>

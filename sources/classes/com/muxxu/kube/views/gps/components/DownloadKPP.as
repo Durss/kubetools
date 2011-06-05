@@ -1,0 +1,17 @@
+package com.muxxu.kube.views.gps.components {	import flash.events.FocusEvent;
+	import com.muxxu.kube.events.GPSDataEvent;
+	import gs.TweenLite;
+	import com.muxxu.kube.data.GPSData;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import com.nurun.components.form.events.FormComponentEvent;
+	import com.nurun.structure.environnement.label.Label;
+	import com.muxxu.kube.components.button.KubeButton;
+	import com.muxxu.kube.components.form.KubeInput;
+	import com.nurun.components.text.CssTextField;
+	import flash.display.Sprite;
+		/**	 * 	 * @author Francois	 */	public class DownloadKPP extends Sprite {				private var _label:CssTextField;
+		private var _input:KubeInput;
+		private var _submit:KubeButton;
+								/* *********** *		 * CONSTRUCTOR *		 * *********** */		/**		 * Creates an instance of <code>DownloadKPP</code>.		 */		public function DownloadKPP() {			initialize();		}						/* ***************** *		 * GETTERS / SETTERS *		 * ***************** */		/**		 * Sets the children's tabIndex		 */		override public function set tabIndex(value:int):void {			_input.tabIndex = value;			_submit.tabIndex = value;		}				/**		 * Gets the children's tabIndex		 */		override public function get tabIndex():int {			return _input.tabIndex;		}						/* ****** *		 * PUBLIC *		 * ****** */						/* ******* *		 * PRIVATE *		 * ******* */		/**		 * Initialize the class.		 */		private function initialize():void {			_label	= addChild(new CssTextField("windowTitle")) as CssTextField;			_input	= addChild(new KubeInput(Label.getLabel("gpsFormKPPID"))) as KubeInput;			_submit	= addChild(new KubeButton(Label.getLabel("gpsKppFormSubmit"))) as KubeButton;						_input.addEventListener(FormComponentEvent.SUBMIT, submitHandler);			_submit.addEventListener(MouseEvent.CLICK, submitHandler);			_input.addEventListener(FocusEvent.FOCUS_IN, focusInputHandler);						GPSData.getInstance().addEventListener(GPSDataEvent.DOWNLOAD_KPP_COMPLETE, downloaKPPResultHandler);						computePositions();		}
+		/**		 * Resize and replace the elements.		 */		private function computePositions():void {			_input.x = Math.round(_label.width);			_input.width = 300;			_input.validate();			_submit.x = Math.round(_input.x + _input.width + 5);			_submit.height = _input.height;		}				/**		 * Called when inpute receives the focus.		 */		private function focusInputHandler(event:FocusEvent):void {			_input.style = "input";			_input.defaultStyle = "inputDefault";		}		/**		 * Called when the form is submitted.		 */		private function submitHandler(event:Event):void {			stage.focus = null;			mouseChildren = mouseEnabled = false;			TweenLite.to(this, .25, {alpha:.35});			GPSData.getInstance().downloadKPP(_input.text);		}				/**		 * Called when KPP download completes.		 */		private function downloaKPPResultHandler(event:GPSDataEvent):void {			mouseChildren = mouseEnabled = true;			TweenLite.to(this, .25, {alpha:1});			if(event.resultCode > 0) {				_input.style = _input.defaultStyle = "inputError";				_input.text = _input.defaultLabel = Label.getLabel("gpsFormKPPDownloadError" + event.resultCode);			}else{				_input.text = _input.defaultLabel = Label.getLabel("gpsFormKPPID");			}		}	}}

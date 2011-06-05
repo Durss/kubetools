@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?> 
+<configuration xmlns="http://ns.adobe.com/air/framework/update/configuration/1.0"> 
+     <url>http://www.muxxu.free.fr/kube/apps/kubetools/ws/updater.php</url> 
+    <delay>1</delay> 
+</configuration>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+	A <texture> node is contains the ID of the kube, its related landscape ID and the URL of th .KUB file.
+	To create a .KUB file, use the KubeViewer :
+		http://www.muxxu.free.fr/kube/apps/kubeviewer/
+-->
+<root>
+	<textures>
+		<texture id="3" landscapeID="17" name="Terre Brune"><![CDATA[imgs/textures/1.kub]]></texture>
+		<texture id="4" landscapeID="17" name="Bois Bouleau"><![CDATA[imgs/textures/2.kub]]></texture>
+		<texture id="5" landscapeID="17" name="Feuilles Bouleau"><![CDATA[imgs/textures/3.kub]]></texture>
+		<texture id="6" landscapeID="4" name="Terre D'Automne"><![CDATA[imgs/textures/4.kub]]></texture>
+		<texture id="7" landscapeID="4" name="Bois d'Automne"><![CDATA[imgs/textures/5.kub]]></texture>
+		<texture id="8" landscapeID="4" name="Feuilles d'Automne"><![CDATA[imgs/textures/6.kub]]></texture>
+		<texture id="9" landscapeID="1" name="Terre Sombre"><![CDATA[imgs/textures/7.kub]]></texture>
+		<texture id="10" landscapeID="1" name="Bois Sombre"><![CDATA[imgs/textures/8.kub]]></texture>
+		<texture id="11" landscapeID="1" name="Feuilles Sombres"><![CDATA[imgs/textures/9.kub]]></texture>
+		<texture id="12" landscapeID="1" name="Herbes Sombres"><![CDATA[imgs/textures/10.kub]]></texture>
+		<texture id="13" landscapeID="16" name="Terre Bleue"><![CDATA[imgs/textures/11.kub]]></texture>
+		<texture id="14" landscapeID="16" name="Coeur de Nuage"><![CDATA[imgs/textures/12.kub]]></texture>
+		<texture id="15" landscapeID="16" name="Nuage"><![CDATA[imgs/textures/13.kub]]></texture>
+		<texture id="2" landscapeID="16" name="Eau"><![CDATA[imgs/textures/14.kub]]></texture>
+		<texture id="16" landscapeID="9" name="Bois Clair"><![CDATA[imgs/textures/15.kub]]></texture>
+		<texture id="17" landscapeID="9" name="Feuilles Roses"><![CDATA[imgs/textures/16.kub]]></texture>
+		<texture id="18" landscapeID="10" name="Racines"><![CDATA[imgs/textures/17.kub]]></texture>
+		<texture id="19" landscapeID="10" name="Bois Geant"><![CDATA[imgs/textures/18.kub]]></texture>
+		<texture id="20" landscapeID="10" name="Feuilles Geantes"><![CDATA[imgs/textures/19.kub]]></texture>
+		<texture id="53" landscapeID="10" name="Gland"><![CDATA[imgs/textures/20.kub]]></texture>
+		<texture id="21" landscapeID="13" name="Terre Neige"><![CDATA[imgs/textures/21.kub]]></texture>
+		<texture id="22" landscapeID="13" name="Bois de Sapin"><![CDATA[imgs/textures/22.kub]]></texture>
+		<texture id="23" landscapeID="13" name="Feuilles Neige"><![CDATA[imgs/textures/23.kub]]></texture>
+		<texture id="24" landscapeID="14" name="Jungle"><![CDATA[imgs/textures/24.kub]]></texture>
+		<texture id="25" landscapeID="14" name="Lianes Sombres"><![CDATA[imgs/textures/25.kub]]></texture>
+		<texture id="26" landscapeID="14" name="Lianes Claires"><![CDATA[imgs/textures/26.kub]]></texture>
+		<texture id="27" landscapeID="14" name="Lianes Pourries"><![CDATA[imgs/textures/27.kub]]></texture>
+		<texture id="60" landscapeID="14" name="Koala"><![CDATA[imgs/textures/28.kub]]></texture>
+		<texture id="28" landscapeID="11" name="Mur"><![CDATA[imgs/textures/29.kub]]></texture>
+		<texture id="29" landscapeID="11" name="Roc"><![CDATA[imgs/textures/30.kub]]></texture>
+		<texture id="30" landscapeID="11" name="Pillier"><![CDATA[imgs/textures/31.kub]]></texture>
+		<texture id="31" landscapeID="7" name="Prairie"><![CDATA[imgs/textures/32.kub]]></texture>
+		<texture id="32" landscapeID="7" name="Herbes Claires"><![CDATA[imgs/textures/33.kub]]></texture>
+		<texture id="33" landscapeID="7" name="Herbes"><![CDATA[imgs/textures/34.kub]]></texture>
+		<texture id="34" landscapeID="12" name="Marais"><![CDATA[imgs/textures/35.kub]]></texture>
+		<texture id="35" landscapeID="12" name="Bois Marais"><![CDATA[imgs/textures/36.kub]]></texture>
+		<texture id="36" landscapeID="12" name="Feuilles Marais"><![CDATA[imgs/textures/37.kub]]></texture>
+		<texture id="37" landscapeID="12" name="Boue"><![CDATA[imgs/textures/38.kub]]></texture>
+		<texture id="38" landscapeID="15" name="Roche Froide"><![CDATA[imgs/textures/39.kub]]></texture>
+		<texture id="39" landscapeID="15" name="Roche Volcanique"><![CDATA[imgs/textures/40.kub]]></texture>
+		<texture id="54" landscapeID="15" name="Lave"><![CDATA[imgs/textures/41.kub]]></texture>
+		<texture id="40" landscapeID="6" name="Cendres"><![CDATA[imgs/textures/42.kub]]></texture>
+		<texture id="41" landscapeID="6" name="Grais"><![CDATA[imgs/textures/43.kub]]></texture>
+		<texture id="42" landscapeID="6" name="Totem Antique"><![CDATA[imgs/textures/44.kub]]></texture>
+		<texture id="43" landscapeID="8" name="Pâturage"><![CDATA[imgs/textures/45.kub]]></texture>
+		<texture id="44" landscapeID="8" name="Fleur Blanche"><![CDATA[imgs/textures/46.kub]]></texture>
+		<texture id="45" landscapeID="8" name="Fleur Rose"><![CDATA[imgs/textures/47.kub]]></texture>
+		<texture id="46" landscapeID="8" name="Stonedge"><![CDATA[imgs/textures/48.kub]]></texture>
+		<texture id="47" landscapeID="5" name="Savane"><![CDATA[imgs/textures/49.kub]]></texture>
+		<texture id="48" landscapeID="5" name="Arbuste sec"><![CDATA[imgs/textures/50.kub]]></texture>
+		<texture id="49" landscapeID="5" name="Zebre"><![CDATA[imgs/textures/51.kub]]></texture>
+		<texture id="50" landscapeID="5" name="Elephant"><![CDATA[imgs/textures/52.kub]]></texture>
+		<texture id="51" landscapeID="2" name="Sable"><![CDATA[imgs/textures/53.kub]]></texture>
+		<texture id="52" landscapeID="2" name="Cactus"><![CDATA[imgs/textures/54.kub]]></texture>
+		<texture id="57" landscapeID="18" name="Meka"><![CDATA[imgs/textures/55.kub]]></texture>
+		<texture id="58" landscapeID="18" name="Metal"><![CDATA[imgs/textures/56.kub]]></texture>
+		<texture id="59" landscapeID="18" name="Acier"><![CDATA[imgs/textures/57.kub]]></texture>
+		
+		<texture id="1" landscapeID="special" name="Beton"><![CDATA[imgs/textures/58.kub]]></texture>
+		<texture id="55" landscapeID="special" name="Sombre"><![CDATA[imgs/textures/59.kub]]></texture>
+		<texture id="69" landscapeID="special" name="Or"><![CDATA[imgs/textures/60.kub]]></texture>
+		<texture id="70" landscapeID="special" name="Forum"><![CDATA[imgs/textures/61.kub]]></texture>
+		<texture id="72" landscapeID="special" name="Ressort"><![CDATA[imgs/textures/62.kub]]></texture>
+		<texture id="71" landscapeID="special" name="Teleporteur"><![CDATA[imgs/textures/63.kub]]></texture>
+		<texture id="61" landscapeID="special" name="Invisible"><![CDATA[imgs/textures/71.kub]]></texture>
+		<texture id="74" landscapeID="special" name="Invisible"><![CDATA[imgs/textures/74.kub]]></texture>
+		<texture id="75" landscapeID="special" name="Invisible"><![CDATA[imgs/textures/75.kub]]></texture>
+		<texture id="76" landscapeID="special" name="Invisible"><![CDATA[imgs/textures/76.kub]]></texture>
+		
+		<texture id="62" landscapeID="transparent" alpha=".35" name="Amethyste"><![CDATA[imgs/textures/64.kub]]></texture>
+		<texture id="63" landscapeID="transparent" alpha=".35" name="Emeraude"><![CDATA[imgs/textures/65.kub]]></texture>
+		<texture id="64" landscapeID="transparent" alpha=".35" name="Rubis"><![CDATA[imgs/textures/66.kub]]></texture>
+		<texture id="65" landscapeID="transparent" alpha=".35" name="Saphir"><![CDATA[imgs/textures/67.kub]]></texture>
+		<texture id="68" landscapeID="transparent" alpha=".35" name="Lumiere"><![CDATA[imgs/textures/68.kub]]></texture>
+		<texture id="66" landscapeID="transparent" alpha=".35" name="Brouillard"><![CDATA[imgs/textures/69.kub]]></texture>
+		<texture id="67" landscapeID="transparent" alpha=".35" name="Ombre"><![CDATA[imgs/textures/70.kub]]></texture>
+		
+	</textures>
+	
+	<landscapes>
+		<landscape id="unknown"><![CDATA[imgs/landscapes/unknown.png]]></landscape>
+		<landscape id="1"><![CDATA[imgs/landscapes/bigTree.jpg]]></landscape>
+		<landscape id="2"><![CDATA[imgs/landscapes/cactus.jpg]]></landscape>
+		<landscape id="3"><![CDATA[imgs/landscapes/canyons.jpg]]></landscape>
+		<landscape id="4"><![CDATA[imgs/landscapes/deadLeaves.jpg]]></landscape>
+		<landscape id="5"><![CDATA[imgs/landscapes/desert.jpg]]></landscape>
+		<landscape id="6"><![CDATA[imgs/landscapes/desertAntenna.jpg]]></landscape>
+		<landscape id="7"><![CDATA[imgs/landscapes/outback.jpg]]></landscape>
+		<landscape id="8"><![CDATA[imgs/landscapes/prairie.jpg]]></landscape>
+		<landscape id="9"><![CDATA[imgs/landscapes/purpleBush.jpg]]></landscape>
+		<landscape id="10"><![CDATA[imgs/landscapes/redTree.jpg]]></landscape>
+		<landscape id="11"><![CDATA[imgs/landscapes/rocks.jpg]]></landscape>
+		<landscape id="12"><![CDATA[imgs/landscapes/smallTree.jpg]]></landscape>
+		<landscape id="13"><![CDATA[imgs/landscapes/snow.jpg]]></landscape>
+		<landscape id="14"><![CDATA[imgs/landscapes/swamps.jpg]]></landscape>
+		<landscape id="15"><![CDATA[imgs/landscapes/volcano.jpg]]></landscape>
+		<landscape id="16"><![CDATA[imgs/landscapes/waterVolcano.jpg]]></landscape>
+		<landscape id="17"><![CDATA[imgs/landscapes/yellowTree.jpg]]></landscape>
+		<landscape id="18"><![CDATA[imgs/landscapes/laputa.jpg]]></landscape>
+	</landscapes>
+</root>

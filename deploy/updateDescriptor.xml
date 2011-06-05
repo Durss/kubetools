@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?> 
+<update xmlns="http://ns.adobe.com/air/framework/update/description/1.0"> 
+	<version>0.6.1</version> 
+	<url>http://www.muxxu.free.fr/kube/apps/kubetools/KubeTools.air</url> 
+	<description><![CDATA[Ajout d'un système d'updates automatiques.\rMise en place du système d'annonces\rAjout de l'ATL4\rLoader d'initialisation et fenêtre de login de nouveau sur fond transparent\rReduction importante du nombre de requêtes effectuées par la carte des dolmens pour soulager mon modeste serveur et en améliorer les performances.\rRefonte complète du moteur de la carte de manière à la fluidifier.\rDebugs mineurs.]]></description> 
+</update>

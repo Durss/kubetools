@@ -1,0 +1,1459 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates an accordion" enabled="true" id="com.powerflasher.fdt.ui.editor.template.accordion" name="Accordion">&lt;${m:mxml_component(Accordion)} width="${300}" height="${400}"&gt;&#13;
+	${cursor}&#13;
+&lt;/${m}&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="ADDED_TO_STAGE handler" enabled="true" name="addedHandler">/**&#13;
+ * Called when the stage is available.&#13;
+ */&#13;
+private function addedToStageHandler(event:Event):void {&#13;
+	removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);&#13;
+	stage.addEventListener(Event.RESIZE, computePositions);&#13;
+	computePositions();&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="AddEventListener on ADDED_TO_STAGE" enabled="true" name="addedListener">addEventListener(Event.ADDED_TO_STAGE, ${addedToStageHandler});</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Bootstrap class" enabled="true" name="application">package ${enclosing_package} {&#13;
+	import flash.display.MovieClip;&#13;
+&#13;
+	/**&#13;
+	 * Bootstrap class of the application.&#13;
+	 * Must be set as the main class for the flex sdk compiler&#13;
+	 * but actually the real bootstrap class will be the factoryClass&#13;
+	 * designated in the metadata instruction.&#13;
+	 * &#13;
+	 * @author ${user}&#13;
+	 */&#13;
+	 &#13;
+	[SWF(width="${stage_width}", height="${stage_height}", backgroundColor="0xFFFFFF", frameRate="${framerate}")]&#13;
+	[Frame(factoryClass="${ApplicationLoader}")]&#13;
+	public class ${enclosing_type} extends MovieClip {&#13;
+		&#13;
+		&#13;
+		&#13;
+		&#13;
+		/* *********** *&#13;
+		 * CONSTRUCTOR *&#13;
+		 * *********** */&#13;
+		/**&#13;
+		 * Creates an instance of &lt;code&gt;Application&lt;/code&gt;.&lt;br&gt;&#13;
+		 */&#13;
+		public function ${enclosing_type}() {&#13;
+			initialize();&#13;
+		}&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ***************** *&#13;
+		 * GETTERS / SETTERS *&#13;
+		 * ***************** */&#13;
+&#13;
+&#13;
+&#13;
+		/* ****** *&#13;
+		 * PUBLIC *&#13;
+		 * ****** */&#13;
+&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ******* *&#13;
+		 * PRIVATE *&#13;
+		 * ******* */&#13;
+		/**&#13;
+		 * Initialize the class.&lt;br&gt;&#13;
+		 */&#13;
+		private function initialize():void {&#13;
+			&#13;
+			computePositions();&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Resize and replace the elements.&lt;br&gt;&#13;
+		 */&#13;
+		private function computePositions():void {&#13;
+			&#13;
+		}&#13;
+		&#13;
+	}&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Bootstrap loader" enabled="true" name="applicationloader">package ${enclosing_package} {&#13;
+	import flash.display.DisplayObject;&#13;
+	import flash.display.MovieClip;&#13;
+	import flash.display.StageAlign;&#13;
+	import flash.display.StageScaleMode;&#13;
+	import flash.events.Event;&#13;
+	import flash.geom.Rectangle;&#13;
+	import flash.utils.getDefinitionByName;&#13;
+&#13;
+	/**&#13;
+	 * &#13;
+	 * @author ${user}&#13;
+	 */&#13;
+	public class ${enclosing_type} extends MovieClip {&#13;
+		&#13;
+		&#13;
+		&#13;
+		&#13;
+		/* *********** *&#13;
+		 * CONSTRUCTOR *&#13;
+		 * *********** */&#13;
+		/**&#13;
+		 * Creates an instance of &lt;code&gt;${enclosing_type}&lt;/code&gt;.&lt;br&gt;&#13;
+		 */&#13;
+		public function ${enclosing_type}() {&#13;
+			initialize();&#13;
+		}&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ***************** *&#13;
+		 * GETTERS / SETTERS *&#13;
+		 * ***************** */&#13;
+&#13;
+&#13;
+&#13;
+		/* ****** *&#13;
+		 * PUBLIC *&#13;
+		 * ****** */&#13;
+&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ******* *&#13;
+		 * PRIVATE *&#13;
+		 * ******* */&#13;
+		/**&#13;
+		 * Initialize the class.&lt;br&gt;&#13;
+		 */&#13;
+		private function initialize():void {&#13;
+			stop();&#13;
+			stage.align		= StageAlign.TOP_LEFT;&#13;
+			stage.scaleMode	= StageScaleMode.NO_SCALE;&#13;
+			stage.showDefaultContextMenu = false;&#13;
+			addEventListener(Event.ENTER_FRAME, enterFrameHandler);&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Called on ENTER_FRAME event to update the progress bar.&lt;br&gt;&#13;
+		 */&#13;
+		private function enterFrameHandler(event:Event):void {&#13;
+			graphics.clear();&#13;
+			if(framesLoaded == totalFrames &amp;&amp; loaderInfo.bytesLoaded == loaderInfo.bytesTotal &amp;&amp; loaderInfo.bytesTotal &gt; 1) {&#13;
+				removeEventListener(Event.ENTER_FRAME, enterFrameHandler);&#13;
+				nextFrame();&#13;
+				launch();&#13;
+			} else {&#13;
+				var w:int = 300; &#13;
+				var h:int = 6; &#13;
+				var percent:Number = root.loaderInfo.bytesLoaded / root.loaderInfo.bytesTotal;&#13;
+				var rect:Rectangle = new Rectangle(0,0,0,0);&#13;
+				rect.x	= Math.round((stage.stageWidth - w) * .5);&#13;
+				rect.y	= Math.round((stage.stageHeight - h) * .5);&#13;
+				graphics.lineStyle(1, 0xffffff, 1, true);&#13;
+				graphics.drawRect(rect.x, rect.y, w, h);&#13;
+				&#13;
+				graphics.lineStyle(0, 0xffffff, 0, true);&#13;
+				graphics.beginFill(0xffffff, .5);&#13;
+				graphics.drawRect(rect.x + 2, rect.y + 2, Math.round((w - 3) * percent), h - 3);&#13;
+				graphics.endFill();&#13;
+			}&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Launch the application&#13;
+		 */&#13;
+		private function launch():void {&#13;
+			// on frame 2&#13;
+			var mainClass:Class = Class(getDefinitionByName("${Application}"));&#13;
+			if(mainClass) {&#13;
+				var app:Object = new mainClass();&#13;
+				addChild(app as DisplayObject);&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}</template><template autoinsert="true" context="com.pf.fdt.ui.editor.template.actionscript" deleted="false" description="attach movie rapide" enabled="true" name="atm">${type}(attachMovie("_${type}","${object}",getNextHighestDepth(), {${options}}));${cursor}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Create an add to stage a DisplayObject instance." enabled="true" name="atm">${instance} = addChild(new ${type}()) as ${type};${cursor}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="" enabled="true" name="bean">package ${enclosing_package} {&#13;
+	import com.nurun.structure.beans.AbstractBean;&#13;
+	import com.nurun.structure.beans.IBean;&#13;
+&#13;
+	/**&#13;
+	 * &#13;
+	 * @author  ${user}&#13;
+	 */&#13;
+	public class ${enclosing_type} extends AbstractBean implements IBean {&#13;
+		&#13;
+		&#13;
+		&#13;
+		&#13;
+		/* *********** *&#13;
+		 * CONSTRUCTOR *&#13;
+		 * *********** */&#13;
+		/**&#13;
+		 * Creates an instance of &lt;code&gt; ${enclosing_type}&lt;/code&gt;.&#13;
+		 */&#13;
+		public function  ${enclosing_type}() {&#13;
+			super();&#13;
+			_model = new ${model};&#13;
+		}&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ***************** *&#13;
+		 * GETTERS / SETTERS *&#13;
+		 * ***************** */&#13;
+&#13;
+&#13;
+&#13;
+		/* ****** *&#13;
+		 * PUBLIC *&#13;
+		 * ****** */&#13;
+		/**&#13;
+		 * Called to start the bean.&#13;
+		 */&#13;
+		override public function start():void {&#13;
+			//Create views here&#13;
+			&#13;
+		}&#13;
+&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ******* *&#13;
+		 * PRIVATE *&#13;
+		 * ******* */&#13;
+		&#13;
+	}&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Creates a bean's controler" enabled="true" name="beancontroler">package ${enclosing_package} {&#13;
+	import com.nurun.structure.beans.control.BeanControler;&#13;
+	import com.nurun.structure.beans.control.IBeanControler;&#13;
+	import com.tagheuer.core.vo.navigation.NavigationLink;&#13;
+&#13;
+	/**&#13;
+	 * &#13;
+	 * @author ${user}&#13;
+	 */&#13;
+	public class ${enclosing_type} extends BeanControler implements IBeanControler {&#13;
+		&#13;
+		&#13;
+		&#13;
+		&#13;
+		/* *********** *&#13;
+		 * CONSTRUCTOR *&#13;
+		 * *********** */&#13;
+		/**&#13;
+		 * Creates an instance of &lt;code&gt;${enclosing_type}&lt;/code&gt;.&#13;
+		 */&#13;
+		public function ${enclosing_type}() {&#13;
+			super();&#13;
+		}&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ***************** *&#13;
+		 * GETTERS / SETTERS *&#13;
+		 * ***************** */&#13;
+&#13;
+&#13;
+&#13;
+		/* ****** *&#13;
+		 * PUBLIC *&#13;
+		 * ****** */&#13;
+		&#13;
+		/**&#13;
+		 * Dispatches a &lt;code&gt;BEAN_MESSAGE&lt;/code&gt; event pointing toward the given&#13;
+		 * &lt;code&gt;NavigationLink&lt;/code&gt; instance&#13;
+		 * &#13;
+		 * @param link The NavigationLink object that will be dispatched in the BEAN_MESSAGE&#13;
+		 * @see com.th.monaco.vo.NavigationLink com.th.monaco.vo.NavigationLink&#13;
+		 */&#13;
+		public function navigateToLink(link:NavigationLink):void {&#13;
+			${model}(_model).navigateToLink(link);&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Dispatches a &lt;code&gt;BEAN_MESSAGE&lt;/code&gt; event pointing toward the given&#13;
+		 * entoty id.&#13;
+		 * &#13;
+		 * @param id of the entity to navigate to.&#13;
+		 */&#13;
+		public function navigateToEntityId(id:String):void {&#13;
+			${model}(_model).navigateToEntityId(id);&#13;
+		}&#13;
+&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ******* *&#13;
+		 * PRIVATE *&#13;
+		 * ******* */&#13;
+		&#13;
+	}&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Creates a bean's data class" enabled="true" name="beandata">package ${enclosing_package} {&#13;
+	import com.nurun.structure.beans.data.BeanValueObject;&#13;
+	&#13;
+	/**&#13;
+	 * &#13;
+	 * @author ${user}&#13;
+	 */&#13;
+	public class ${enclosing_type} implements BeanValueObject {&#13;
+		&#13;
+		private var _xml:XML;&#13;
+&#13;
+		&#13;
+		&#13;
+		/* *********** *&#13;
+		 * CONSTRUCTOR *&#13;
+		 * *********** */&#13;
+		/**&#13;
+		 * Creates an instance of &lt;code&gt;${enclosing_type}&lt;/code&gt;.&#13;
+		 */&#13;
+		public function ${enclosing_type}() { }&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ***************** *&#13;
+		 * GETTERS / SETTERS *&#13;
+		 * ***************** */&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ****** *&#13;
+		 * PUBLIC *&#13;
+		 * ****** */&#13;
+		/**&#13;
+		 * Populate the value object.&#13;
+		 */&#13;
+		public function populate(xml:XML):void {&#13;
+			_xml = xml;&#13;
+			&#13;
+		}&#13;
+		&#13;
+&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ******* *&#13;
+		 * PRIVATE *&#13;
+		 * ******* */&#13;
+	}&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Creates a bean's model" enabled="true" name="beanmodel">package ${enclosing_package} {&#13;
+	import com.tagheuer.core.vo.gui.GUIState;&#13;
+	import com.nurun.core.lang.vo.ValueObject;&#13;
+	import com.nurun.structure.beans.events.BeanDataEvent;&#13;
+	import com.nurun.structure.beans.model.AbstractBeanModel;&#13;
+	import com.nurun.structure.beans.model.IBeanModel;&#13;
+	import com.nurun.structure.mvc.model.events.ModelEvent;&#13;
+	import com.tagheuer.beans.timelessinspirations.elementproof.controler.ElementProofControler;&#13;
+	import com.tagheuer.core.beans.ApplicationBeanMessage;&#13;
+	import com.tagheuer.core.vo.navigation.NavigationLink;&#13;
+&#13;
+	/**&#13;
+	 * &#13;
+	 * @author  Francois DURSUS for Nurun&#13;
+	 */&#13;
+	public class ${enclosing_type} extends AbstractBeanModel implements IBeanModel {&#13;
+		&#13;
+		private var _data:${data};&#13;
+		private var _currentState:GUIState;&#13;
+		&#13;
+		&#13;
+		&#13;
+		/* *********** *&#13;
+		 * CONSTRUCTOR *&#13;
+		 * *********** */&#13;
+		/**&#13;
+		 * Creates an instance of &lt;code&gt;${enclosing_type}&lt;/code&gt;.&#13;
+		 */&#13;
+		public function ${enclosing_type}() {&#13;
+			super();&#13;
+			_controler = new ${controler};&#13;
+			_controler.initialise(this);&#13;
+		}&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ***************** *&#13;
+		 * GETTERS / SETTERS *&#13;
+		 * ***************** */&#13;
+&#13;
+&#13;
+&#13;
+		/* ****** *&#13;
+		 * PUBLIC *&#13;
+		 * ****** */&#13;
+		&#13;
+		/**&#13;
+		 * Initializes the model.&#13;
+		 */&#13;
+		override public function initialise(data:ValueObject):void {&#13;
+			if(data is ${data}) _data = data as ${data};&#13;
+			onReady();&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Called to change the bean's state.&#13;
+		 */&#13;
+		override public function setState(state:*):void {&#13;
+			_currentState = state as GUIState;&#13;
+			update();&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Dispatches a &lt;code&gt;BEAN_MESSAGE&lt;/code&gt; event pointing toward the given&#13;
+		 * &lt;code&gt;NavigationLink&lt;/code&gt; instance&#13;
+		 * &#13;
+		 * @param link The NavigationLink object that will be dispatched in the BEAN_MESSAGE&#13;
+		 * @see com.th.monaco.vo.NavigationLink com.th.monaco.vo.NavigationLink&#13;
+		 */&#13;
+		public function navigateToLink(link:NavigationLink):void {&#13;
+			dispatchEvent(new BeanDataEvent(BeanDataEvent.DISPATCH_MESSAGE, null, ApplicationBeanMessage.NAVIGATE, link));&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Dispatches a &lt;code&gt;BEAN_MESSAGE&lt;/code&gt; event pointing toward the given&#13;
+		 * entity id.&#13;
+		 * &#13;
+		 * @param id of the entity to navigate to.&#13;
+		 */&#13;
+		public function navigateToEntityId(id:String):void {&#13;
+			dispatchEvent(new BeanDataEvent(BeanDataEvent.DISPATCH_MESSAGE, null, ApplicationBeanMessage.NAVIGATE, id));&#13;
+		}&#13;
+&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ******* *&#13;
+		 * PRIVATE *&#13;
+		 * ******* */&#13;
+		/**&#13;
+		 * Fires an update to the views.&#13;
+		 */&#13;
+		private function update():void {&#13;
+			dispatchEvent(new ModelEvent(ModelEvent.UPDATE, this));&#13;
+		}&#13;
+		&#13;
+	}&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="" enabled="true" name="beanview">package ${enclosing_package} {&#13;
+	import com.nurun.structure.beans.control.IBeanControler;&#13;
+	import com.nurun.structure.beans.model.IBeanModel;&#13;
+	import com.nurun.structure.beans.views.IBeanView;&#13;
+	import com.nurun.structure.mvc.model.events.IModelEvent;&#13;
+&#13;
+	import flash.display.Sprite;&#13;
+	&#13;
+	/**&#13;
+	 * &#13;
+	 * @author  ${user}&#13;
+	 */&#13;
+	public class ${enclosing_type} extends Sprite implements IBeanView {&#13;
+&#13;
+		private var _controler:${controler};&#13;
+		&#13;
+		&#13;
+		&#13;
+		&#13;
+		/* *********** *&#13;
+		 * CONSTRUCTOR *&#13;
+		 * *********** */&#13;
+		/**&#13;
+		 * Creates an instance of &lt;code&gt;${enclosing_type}&lt;/code&gt;.&#13;
+		 */&#13;
+		public function ${enclosing_type}() {&#13;
+			initialize();&#13;
+		}&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ***************** *&#13;
+		 * GETTERS / SETTERS *&#13;
+		 * ***************** */&#13;
+		/**&#13;
+		 * Sets the controler's reference.&#13;
+		 */&#13;
+		public function set controler(controler:IBeanControler):void {&#13;
+			_controler = controler as ${controler};&#13;
+		}&#13;
+&#13;
+&#13;
+&#13;
+		/* ****** *&#13;
+		 * PUBLIC *&#13;
+		 * ****** */&#13;
+		/**&#13;
+		 * Called on model's update.&#13;
+		 */&#13;
+		public function update(e:IModelEvent):void {&#13;
+			var model:${model} = e.model as ${model};&#13;
+			model;&#13;
+		}&#13;
+&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ******* *&#13;
+		 * PRIVATE *&#13;
+		 * ******* */&#13;
+		/**&#13;
+		 * Initialize the class.&#13;
+		 */&#13;
+		private function initialize():void {&#13;
+			&#13;
+			computePositions();&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Resize and replace the elements.&#13;
+		 */&#13;
+		private function computePositions():void {&#13;
+			&#13;
+		}&#13;
+		&#13;
+	}&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds Bindable Metadata with event parameter." enabled="true" id="com.powerflasher.fdt.ui.editor.template.bindableWithEventMetadata" name="Bindable">[Bindable(event="${propertyChange}")]</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds Bindable Metadata." enabled="true" id="com.powerflasher.fdt.ui.editor.template.bindableMetadata" name="Bindable">[Bindable]</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a Box" enabled="true" id="com.powerflasher.fdt.ui.editor.template.box" name="Box">&lt;${m:mxml_component(Box)} direction="${vertical}"&gt;&#13;
+	${cursor}&#13;
+&lt;/${m}&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a new button" enabled="true" id="com.powerflasher.fdt.ui.editor.template.button" name="Button">&lt;${m:mxml_component(Button)} label="${myButton}" click="${onClick}(${event})" /&gt;${cursor}
+</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a Canvas" enabled="true" id="com.powerflasher.fdt.ui.editor.template.canvas" name="Canvas">&lt;${m:mxml_component(Canvas)} height="${200}" width="${100}"&gt;&#13;
+	${cursor}&#13;
+&lt;/${m}&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a new checkbox" enabled="true" id="com.powerflasher.fdt.ui.editor.template.checkbox" name="Checkbox">&lt;${m:mxml_component(CheckBox)} id="${checkBoxId}" label="${myCheckBox}" /&gt;${cursor}
+</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as2" deleted="false" description="Creates an empty class" enabled="true" id="com.powerflasher.fdt.ui.editor.template.as2.class" name="class">/**
+ * @author ${user}
+ */
+class ${enclosing_package_and_type} ${cursor}{
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Creates an empty class without an package declaration" enabled="true" id="com.powerflasher.fdt.ui.editor.template.class" name="class">package ${enclosing_package} {
+	
+	/**
+	 * 
+	 * @author ${user}
+	 */
+	public class ${enclosing_type} ${cursor} {
+		
+		
+		
+		
+		/* *********** *
+		 * CONSTRUCTOR *
+		 * *********** */
+		/**
+		 * Creates an instance of &lt;code&gt;${enclosing_type}&lt;/code&gt;.
+		 */
+		public function ${enclosing_type}() {
+			initialize();
+		}
+
+		
+		
+		/* ***************** *
+		 * GETTERS / SETTERS *
+		 * ***************** */
+
+
+
+		/* ****** *
+		 * PUBLIC *
+		 * ****** */
+
+
+		
+		
+		/* ******* *
+		 * PRIVATE *
+		 * ******* */
+		/**
+		 * Initialize the class.
+		 */
+		private function initialize():void {
+			
+			computePositions();
+		}
+		
+		/**
+		 * Resize and replace the elements.
+		 */
+		private function computePositions():void {
+			
+		}
+		
+	}
+}</template><template autoinsert="true" context="com.pf.fdt.ui.editor.template.actionscript" deleted="false" description="Crée une collection d'une entité" enabled="true" name="cll">import com.nurun.core.data.AbstractData;&#13;
+import com.nurun.core.data.IData;&#13;
+import com.nurun.utils.Locale;&#13;
+&#13;
+/**&#13;
+ * Une collection correspondant à une liste d'entité ${entite} de l'application&#13;
+ * cette entité peut être mappée avec l'entité IT qui lui correspond&#13;
+ *&#13;
+ * @author ${user}&#13;
+ * @created ${date}&#13;
+ */&#13;
+class ${enclosing_package_and_type}  extends AbstractData implements IData{&#13;
+	&#13;
+	private var a${enclosing_type}:Array;&#13;
+	&#13;
+	/**&#13;
+	 * Constructeur&#13;
+	 */&#13;
+	public function ${enclosing_type}() {&#13;
+		a${enclosing_type} = [];&#13;
+	}&#13;
+	&#13;
+	/* ************ *&#13;
+	 * MANIPULATION *&#13;
+	 * ************ */&#13;
+	&#13;
+	/**&#13;
+	 * Ajout d'une ${entite} ou d'une série de ${entite}&#13;
+	 *&#13;
+	 * @param value un objet ${entite} ou un Array&#13;
+	 */&#13;
+	public function add(value:Object):Void {&#13;
+		if (value instanceof Array) {&#13;
+			for (var i:Number = 0; i &lt; value.length; i++) {&#13;
+				a${enclosing_type}.push(${entite}(value[i]));		&#13;
+			}&#13;
+		} else {&#13;
+			a${enclosing_type}.push(value);&#13;
+		}&#13;
+	}&#13;
+	&#13;
+	/**&#13;
+	 * Récupération de la liste des ${entite}&#13;
+	 *&#13;
+	 * @return une liste avec toutes les ${entite}&#13;
+	 */&#13;
+	public function getAll():Array {&#13;
+		return a${enclosing_type};&#13;
+	}&#13;
+	&#13;
+	/**&#13;
+	 * Retourne une entité ${entite} en particulier&#13;
+	 *&#13;
+	 * @param ${code} ${code} de l'entité ${entite} recherchée&#13;
+	 * @return un entité ${entite}&#13;
+	 */	&#13;
+	public function getOne(${code}:String):${entite} {&#13;
+		for (var i:Number = 0; i &lt; a${enclosing_type}.length; i++) {&#13;
+			if (${entite}(a${enclosing_type}[i]).${code} == ${code}) return ${entite}(a${enclosing_type}[i]);&#13;
+		}&#13;
+		// ${code} n'a pas été trouvé&#13;
+		return null;		&#13;
+	}&#13;
+	&#13;
+	/**&#13;
+	 * Vide la collection&#13;
+	 */&#13;
+	public function clean():Void {&#13;
+		a${enclosing_type} = [];&#13;
+	}&#13;
+		&#13;
+	/* ******************** *&#13;
+	 * METHODES D'INTERFACE *&#13;
+	 * ******************** */	&#13;
+	&#13;
+	/**&#13;
+	 * Récupération d'un objet remoting pour remplir la collection&#13;
+	 *&#13;
+	 * @param objRemoting une liste avec des ${enclosing_type}&#13;
+	 * @return la collection populaté&#13;
+	 */&#13;
+	public function populateRemoting(objRemoting:Array):${enclosing_type} {&#13;
+		clean();&#13;
+		for (var i:Number = 0; i &lt; objRemoting.length; i++) {&#13;
+			a${enclosing_type}.push(new ${entite}().populateRemoting(objRemoting[i]));&#13;
+		}&#13;
+		return this;&#13;
+	}&#13;
+	&#13;
+	/**&#13;
+	 * Retourne une collection à envoyer au remoting&#13;
+	 *&#13;
+	 * @return une List avec des ${entite}&#13;
+	 */&#13;
+	public function extractRemoting():Array {&#13;
+		var list:Array = [];&#13;
+		for (var i:Number = 0; i &lt; a${enclosing_type}.length; i++) {&#13;
+			list.push(${entite}(a${enclosing_type}[i]).extractRemoting());&#13;
+		}&#13;
+		return list;&#13;
+	}&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Create a concrete implementation based on the nurun abstract command classes" enabled="true" name="cmd">package ${enclosing_package} {&#13;
+	import flash.events.Event;&#13;
+	&#13;
+	import com.nurun.core.commands.AbstractCommand;&#13;
+	import com.nurun.core.commands.ICommand;&#13;
+	import com.nurun.core.events.CommandEvent;&#13;
+&#13;
+	/**&#13;
+	 * The  ${enclosing_type} is a concrete implementation of the ICommand interface.&#13;
+	 * Its responsability is to ${describe_purpose}&#13;
+	 *&#13;
+	 * @author ${user}&#13;
+	 * @date ${date};&#13;
+	 */&#13;
+	public class ${enclosing_type} extends AbstractCommand implements ICommand {&#13;
+		&#13;
+		/**&#13;
+		 * Constructor&#13;
+		 */&#13;
+		public function  ${enclosing_type}() {&#13;
+			super();&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Execute the concrete ${enclosing_type} command.&#13;
+		 * Must dispatch the CommandEvent.COMPLETE event when done.&#13;
+		 */&#13;
+		public override function execute():void {&#13;
+			// Command Execution&#13;
+			${cursor}&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Can be used to dispatch the CommandEvent.COMPLETE event asynchronously&#13;
+		 * and / or to execute some method after retrieving some data.&#13;
+		 */&#13;
+		private function onCommandComplete(event:Event = null):void {&#13;
+			// asynchronous proccesses.&#13;
+			&#13;
+			dispatchEvent(new CommandEvent(CommandEvent.COMPLETE));&#13;
+		}&#13;
+	}&#13;
+}&#13;
+</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="&lt;code&gt;&lt;/code&gt;" enabled="true" name="code">&lt;code&gt;${cursor}&lt;/code&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates an new combobox" enabled="true" id="com.powerflasher.fdt.ui.editor.template.combobox" name="ComboBox">&lt;${m:mxml_component(ComboBox)} id="${comboBoxId}" rowCount="${rowCount:value(5)}" dataProvider="${dataProvider}" /&gt;${cursor}
+</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as2" deleted="false" description="Creates Constructor for a class" enabled="true" id="com.powerflasher.fdt.ui.editor.template.as2.constructor" name="constructor">public function ${enclosing_type}() {
+	${cursor}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Creates Constructor for a class" enabled="true" id="com.powerflasher.fdt.ui.editor.template.constructor" name="constructor">public function ${enclosing_type}() {
+	${cursor}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as2" deleted="false" description="static create a component" enabled="true" id="com.powerflasher.fdt.ui.editor.template.as2.create" name="create">public static function create(container : MovieClip,name : String,
+		depth : Number, init : Object) : ${enclosing_type} {
+	var mc : MovieClip = container.attachMovie("${enclosing_package_and_type}", name, depth, init);	
+	return ${enclosing_type}(mc);
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a new datagrid" enabled="true" id="com.powerflasher.fdt.ui.editor.template.datagrid" name="DataGrid">&lt;${m:mxml_component(DataGrid)} id="${dataGridId}" width="${width:value(400)}" height="${height:value(300)}" rowCount="${rowCount:value(10)}" dataProvider="${dataProvider}" &gt;
+	&lt;${mx}:columns&gt;
+		${cursor}
+	&lt;/${mx}:columns&gt;
+&lt;/${m}&gt;
+</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a DataGridColumn" enabled="true" id="com.powerflasher.fdt.ui.editor.template.datagridcolumn" name="DataGridColumn">&lt;${m:mxml_component(DataGridColumn)} dataField="${dataField}" headerText="${headerText}"/&gt;${cursor}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a date chooser" enabled="true" id="com.powerflasher.fdt.ui.editor.template.datechooser" name="DateChooser">&lt;${m:mxml_component(DateChooser)} id="${dateChooserId}" /&gt;${cursor}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Setup the MonsterDebugger" enabled="true" name="debugger">import nl.demonsters.debugger.MonsterDebugger;
+var debugger:MonsterDebugger = new MonsterDebugger(this);</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds Destroy Metadata (Parsley)." enabled="true" id="org.spicefactory.parsley.template.destroy" name="Destroy">[Destroy]</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Dispose method" enabled="true" name="dispose">/**&#13;
+ * Makes the component garbage collectable.&#13;
+ */&#13;
+public function dispose():void {&#13;
+	while(numChildren &gt; 0) {&#13;
+		if(getChildAt(0) is Disposable) Disposable(getChildAt(0)).dispose();&#13;
+		removeChildAt(0);&#13;
+	}&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as2" deleted="false" description="do-while loop" enabled="true" id="com.powerflasher.fdt.ui.editor.template.as2.do" name="do">do {
+	${cursor}
+} while (${condition});</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="do-while loop" enabled="true" id="com.powerflasher.fdt.ui.editor.template.do" name="do">do {
+	${cursor}
+} while (${condition});</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds Embed Metadata for file font." enabled="true" id="com.powerflasher.fdt.ui.editor.template.fontMetadata" name="Embed">[Embed(source="${source}", fontName="${fontName}", mimeType="application/x-font",
+	advancedAntiAliasing="${aaa:value(true, false)}", fontWeight="${weight:value(normal, bold)}", fontStyle="${style:value(normal, italic)}",
+	unicodeRange="${}")]
+${specifier:value(private, public, protected)} var ${embeddedFontClass} : Class;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds Embed Metadata for system font." enabled="true" id="com.powerflasher.fdt.ui.editor.template.fontMetadataSystem" name="Embed">[Embed(systemFont="${systemFontName}", fontName="${fontName}", mimeType="application/x-font",
+	advancedAntiAliasing="${aaa:value(true, false)}", fontWeight="${weight:value(normal, bold)}", fontStyle="${style:value(normal, italic)}",
+	unicodeRange="${}")]
+${specifier:value(private, public, protected)} var ${embeddedFontClass} : Class;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds Embed Metadata with mimeType parameter." enabled="true" id="com.powerflasher.fdt.ui.editor.template.embedMimeType" name="Embed">[Embed(source="${fileName}", mimeType="${}")]
+${specifier:value(private, public, protected)} var ${embeddedClass} : Class;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds Embed Metadata with symbol parameter." enabled="true" id="com.powerflasher.fdt.ui.editor.template.embedSymbol" name="Embed">[Embed(source="${fileName}", symbol="${symbolName}")]
+${specifier:value(private, public, protected)} var ${embeddedClass} : Class;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds Embed Metadata." enabled="true" id="com.powerflasher.fdt.ui.editor.template.embed" name="Embed">[Embed(source="${fileName}")]
+${specifier:value(private, public, protected)} var ${embeddedClass} : Class;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Enumerates all embedded fonts." enabled="true" id="com.powerflasher.fdt.ui.editor.template.enumerateFonts" name="enumerateFonts">var embeddedFonts : Array = Font.enumerateFonts(false);
+embeddedFonts.sortOn("fontName", Array.CASEINSENSITIVE);
+trace("\n----- Enumerate Fonts -----");
+for(var i : int = 0;i &lt; embeddedFonts.length;i++) {
+	trace(embeddedFonts[i].fontName);
+}
+trace("---------------------------\n");</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Basic event class" enabled="true" name="event">package ${enclosing_package} {&#13;
+	import flash.events.Event;&#13;
+	&#13;
+	/**&#13;
+	 * Event fired by ${source}&#13;
+	 * &#13;
+	 * @author ${user}&#13;
+	 */&#13;
+	public class ${enclosing_type} extends Event {&#13;
+		&#13;
+		&#13;
+		&#13;
+		&#13;
+		/* *********** *&#13;
+		 * CONSTRUCTOR *&#13;
+		 * *********** */&#13;
+		/**&#13;
+		 * Creates an instance of &lt;code&gt;${enclosing_type}&lt;/code&gt;.&#13;
+		 */&#13;
+		public function ${enclosing_type}(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {&#13;
+			super(type, bubbles, cancelable);&#13;
+		}&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ***************** *&#13;
+		 * GETTERS / SETTERS *&#13;
+		 * ***************** */&#13;
+&#13;
+&#13;
+&#13;
+		/* ****** *&#13;
+		 * PUBLIC *&#13;
+		 * ****** */&#13;
+		/**&#13;
+		 * Makes a clone of the event object.&#13;
+		 */&#13;
+		override public function clone():Event {&#13;
+			return new ${enclosing_type}(type, bubbles, cancelable);&#13;
+		}&#13;
+&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ******* *&#13;
+		 * PRIVATE *&#13;
+		 * ******* */&#13;
+		&#13;
+	}&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds Event Metadata." enabled="true" id="com.powerflasher.fdt.ui.editor.template.eventMetadata" name="Event">[Event(name="${eventName}", type="${event:value(flash.events.Event)}")]</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="adds FDT_IGNORE block" enabled="true" id="com.powerflasher.fdt.ui.editor.template.fdtIgnore" name="fdtIgnore">/*FDT_IGNORE*/
+${ignoredCode}${cursor}
+/*FDT_IGNORE*/</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as2" deleted="false" description="Iterator over an array using enumeration" enabled="true" id="com.powerflasher.fdt.ui.editor.template.as2.foren" name="fore">for (var ${index} : String in ${array}) {
+	${cursor}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Iterator over keys of an array using enumeration" enabled="true" id="com.powerflasher.fdt.ui.editor.template.foren" name="fore">for (var ${index} : String in ${array}) {
+	${cursor}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Iterator over value of an array using enumeration" enabled="true" id="com.powerflasher.fdt.ui.editor.template.foreach" name="foreach">for each (var ${index} : ${type} in ${array}) {
+	${cursor}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as2" deleted="false" description="Iterator over an array" enabled="true" id="com.powerflasher.fdt.ui.editor.template.as2.forit" name="fori">for (var ${index} : Number = 0; ${index} &lt; ${array}.length; ${index}++) {
+	${cursor}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Iterator over an array" enabled="true" id="com.powerflasher.fdt.ui.editor.template.forit" name="fori">var i:int, len:int;
+len = ${cursor}.length;
+for(i = 0; i &lt; len; ++i) {
+	
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a Form" enabled="true" id="com.powerflasher.fdt.ui.editor.template.form" name="Form">&lt;${m:mxml_component(Form)} width="${width:value(100)}" height="${height:value(100)}"&gt;&#13;
+	&lt;${n:mxml_component(FormHeading)} label="${headerLabel}"/&gt;&#13;
+	&lt;${o:mxml_component(FormItem)} label="${itemLabel}" required="${v:value(false, true)}"&gt;&#13;
+		${cursor}&#13;
+	&lt;/${o}&gt;&#13;
+&lt;/${m}&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a FormItem" enabled="true" id="com.powerflasher.fdt.ui.editor.template.formitem" name="FormItem">&lt;${m:mxml_component(FormItem)} label="${itemLabel}" required="${v:value(false, true)}"&gt;&#13;
+	${cursor}&#13;
+&lt;/${m}&gt;</template><template autoinsert="true" context="com.pf.fdt.ui.editor.template.actionscript" deleted="false" description="Iterator over an array using enumeration" enabled="true" name="forn">for (var n:String in ${array}) {
+	${cursor}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="create a getter and a setter" enabled="true" name="getset">/**&#13;
+ * Sets the ${var} value.&#13;
+ */&#13;
+public function set ${var}(value:${type}):void {&#13;
+	_${var} = value;&#13;
+}&#13;
+		&#13;
+/**&#13;
+ * Gets the ${var} value.&#13;
+ */&#13;
+public function get ${var}():${type} {&#13;
+	return _${var};&#13;
+}</template><template autoinsert="true" context="com.pf.fdt.ui.editor.template.actionscript" deleted="false" description="Pour instancier une méthode getter et setter pour une propriété" enabled="true" name="getset">/**&#13;
+ * Retourne la valeur actuelle de ${prop}&#13;
+ *&#13;
+ * @return la valeur actuelle&#13;
+ */&#13;
+public function get ${prop}():${type} {&#13;
+	return _${prop};&#13;
+}&#13;
+&#13;
+/**&#13;
+ * Définit la valeur à attribuer à ${prop}&#13;
+ *&#13;
+ * @param new${prop} la nouvelle valeur (${type})&#13;
+ */&#13;
+ public function set ${prop}(newValue:${type}):Void {&#13;
+ 	_${prop} = newValue;&#13;
+ }</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="overrides width/height getters" enabled="true" name="getsizes">/**&#13;
+ * Gets the width of the component.&#13;
+ */&#13;
+override public function get width():Number { return _width; }&#13;
+&#13;
+/**&#13;
+ * Gets the height of the component.&#13;
+ */&#13;
+override public function get height():Number { return _height; }</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="creates a getter function" enabled="true" id="com.powerflasher.fdt.ui.editor.template.getter" name="getter">${specifier:value(public, protected, private)} function get ${name}() : ${Type} {
+	return ${null}${cursor};
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a HBox" enabled="true" id="com.powerflasher.fdt.ui.editor.template.hbox" name="HBox">&lt;${m:mxml_component(HBox)} &gt;&#13;
+	${cursor}&#13;
+&lt;/${m}&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a horizontal slider" enabled="true" id="com.powerflasher.fdt.ui.editor.template.hslider" name="HSlider">&lt;${m:mxml_component(HSlider)} id="${hSliderId}" minimum="${min:value(0)}" maximum="${max:value(100)}" value="${value:value(100)}" change="${onSliderChange}(${event})"&#13;
+	snapInterval="${snap:value(1)}" tickInterval="${tick:value(10)}"&#13;
+	dataTipPlacement="${top}" tickColor="${black}" /&gt;${cursor}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates an HTTPService" enabled="true" id="com.powerflasher.fdt.ui.editor.template.httpservice" name="HttpService">&lt;${m:mxml_component(HTTPService)} id="${feedRequest}" url="${url}" fault="${onFault}(${fault:value(event)})" result="${onResult}(${result:value(event)})" resultFormat="${v:value(object,array,xml,e4x,flashvars,text)}" showBusyCursor="${busy:value(true, false)}" ${cursor}/&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Creates an empty if-else block" enabled="true" id="com.powerflasher.fdt.ui.editor.template.ifel" name="ifel">if(${condition}) {
+	${cursor}
+} else {
+	
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates an Image" enabled="true" id="com.powerflasher.fdt.ui.editor.template.image" name="Image">&lt;${m:mxml_component(Image)} source="${imageSource}"/&gt;${cursor}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds Init Metadata (Parsley)." enabled="true" id="org.spicefactory.parsley.template.init" name="Init">[Init]</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds Inject Metadata (Parsley)." enabled="true" id="org.spicefactory.parsley.template.inject" name="Inject">[Inject]</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds Inject Metadata by id (Parsley)." enabled="true" id="org.spicefactory.parsley.template.injectById" name="Inject">[Inject(id="${cursor}")]</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds InjectConstructor Metadata by id (Parsley)." enabled="true" id="org.spicefactory.parsley.template.injectConstructor" name="InjectConstructor">[InjectConstructor]</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as2" deleted="false" description="test type and cast" enabled="true" id="com.powerflasher.fdt.ui.editor.template.as2.instanceof" name="instanceof">if (${name} instanceof ${type}) {
+	var ${newName} : ${type} = ${type}(${name});
+	${cursor}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as2" deleted="false" description="Creates an empty interface" enabled="true" id="com.powerflasher.fdt.ui.editor.template.as2.interface" name="interface">/**
+ * @author ${user}
+ */
+interface ${enclosing_package_and_type} ${cursor}{
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Creates an empty interface" enabled="true" id="com.powerflasher.fdt.ui.editor.template.interface" name="interface">/**
+ * @author ${user}
+ */
+interface ${enclosing_type} ${cursor}{
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="test type and cast" enabled="true" id="com.powerflasher.fdt.ui.editor.template.is" name="is">if (${name} is ${type}) {
+	var ${newName} : ${type} = ${type}(${name});
+	${cursor}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a Label" enabled="true" id="com.powerflasher.fdt.ui.editor.template.label" name="Label">&lt;${m:mxml_component(Label)} text="${myLabel}" ${cursor}/&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as2" deleted="false" description="lazy create an instance" enabled="true" id="com.powerflasher.fdt.ui.editor.template.as2.lazy" name="lazy">if (${name} == null) {
+	${name} = new ${type}(${arguments});
+	${cursor}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="lazy create an instance" enabled="true" id="com.powerflasher.fdt.ui.editor.template.lazy" name="lazy">if (${name} == null) {
+	${name} = new ${type}(${arguments});
+	${cursor}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="creates stubs for UIComponent lifecycle methods" enabled="true" id="com.powerflasher.fdt.ui.editor.template.lifecyclemethods" name="lifecyclemethods">override protected function createChildren() : void {
+	super.createChildren();
+}
+
+override public function invalidateProperties() : void {
+	super.invalidateProperties();
+}
+
+override public function invalidateSize() : void {
+	super.invalidateSize();
+}
+
+override public function invalidateDisplayList() : void {
+	super.invalidateDisplayList();
+}
+
+override protected function commitProperties() : void {
+	super.commitProperties();
+}
+
+override protected function measure() : void {
+	super.measure();
+}
+
+override protected function updateDisplayList(unscaledWidth : Number, unscaledHeight : Number) : void {
+	super.updateDisplayList(unscaledWidth, unscaledHeight);
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a vertical list" enabled="true" id="com.powerflasher.fdt.ui.editor.template.list" name="List"> &lt;${m:mxml_component(List)} width="${100}" dataProvider="{${dataProvider}}" change="${onListSelectionChange}(${event})" ${cursor}/&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Write a log line for Arthropod logger" enabled="true" name="log">Debug.log("${cursor}", 0xFEFEFE, this);</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as2" deleted="false" description="Creates an MTASC public static main function" enabled="true" id="com.powerflasher.fdt.ui.editor.template.as2.smain" name="main">public static function main(container : MovieClip) : Void {
+	${cursor}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds ManagedEvents Metadata (Parsley)." enabled="true" id="org.spicefactory.parsley.template.managedEvents" name="ManagedEvents">[ManagedEvents("${cursor}")]</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds MessageHandler Metadata (Parsley)." enabled="true" id="org.spicefactory.parsley.template.messageHandler" name="MessageHandler">[MessageHandler]</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds MessageHandler Metadata with selector (Parsley)." enabled="true" id="org.spicefactory.parsley.template.messageHandlerWithSelector" name="MessageHandler">[MessageHandler(selector="${cursor}")]</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds MessageInterceptor Metadata with type (Parsley)." enabled="true" id="org.spicefactory.parsley.template.messageInterceptor" name="MessageInterceptor">[MessageInterceptor(type="${cursor}")]</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="MXML Component" enabled="true" id="com.powerflasher.fdt.ui.editor.template.mxmlcomponent" name="mxmlComponent">&lt;${m:mxml_component}/&gt;&#13;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a NumericStepper" enabled="true" id="com.powerflasher.fdt.ui.editor.template.numericstepper" name="NumericStepper">&lt;${m:mxml_component(NumericStepper)} id="${numericStepperId}" minimum="${10}" maximum="${40}" stepSize="${1}" value="${20}" /&gt;&#13;${cursor}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Creates an empty package declaration" enabled="true" id="com.powerflasher.fdt.ui.editor.template.package" name="package">package ${enclosing_package} {
+	${cursor}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a Panel" enabled="true" id="com.powerflasher.fdt.ui.editor.template.panel" name="Panel">&lt;${m:mxml_component(Panel)} title="${myTitle}" height="${500}" width="${300}" &gt;&#13;
+	${cursor}&#13;
+&lt;/${m}&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Populate method template" enabled="true" name="populate">/**&#13;
+ * Populates the component&#13;
+ */&#13;
+public function populate():void {&#13;
+	&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creats a ProgressBar" enabled="true" id="com.powerflasher.fdt.ui.editor.template.progressbar" name="ProgressBar">&lt;${m:mxml_component(ProgressBar)} id="${progressBarId}" labelPlacement="${bottom}" &#13;
+	minimum="${0}" maximum="${100}" label="{${currentProgress}} + '%'" /&gt;${cursor}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as2" deleted="false" description="Template for the QuickTrace short cut." enabled="true" id="com.powerflasher.fdt.ui.editor.template.as2.quicktrace" name="quicktrace">trace('${trace_it}: ' + (${trace_it}));</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Template for the QuickTrace short cut." enabled="true" id="com.powerflasher.fdt.ui.editor.template.quicktrace" name="quicktrace">trace('${trace_it}: ' + (${trace_it}));</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a RadioButton" enabled="true" id="com.powerflasher.fdt.ui.editor.template.radiobutton" name="RadioButton">&lt;${m:mxml_component(RadioButton)} id="${radioButtonId}" groupName="${group}" label="${myRadioButton}" /&gt;${cursor}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a RadioButtonGroup" enabled="true" id="com.powerflasher.fdt.ui.editor.template.radiobuttongroup" name="RadioButtonGroup">&lt;${m:mxml_component(RadioButtonGroup)} id="${radioButtonGroupId}" itemClick="${onRadioButtonClicked}(${event})"/&gt;&#13;
+	&lt;${r:mxml_component(RadioButton)} id="${radioButtonId1}" groupName="${group}" label="${radioButton1}" /&gt;&#13;
+	&lt;${r} id="${radioButtonId2}" groupName="${group}" label="${radioButton2}" /&gt;&#13;
+&lt;${m}/&gt;${cursor}</template><template autoinsert="true" context="com.pf.fdt.ui.editor.template.actionscript" deleted="false" description="attach movie rapide" enabled="true" name="ratm">${object} = ${type}(${content}.attachMovie("_${type}","${object}",${content}.getNextHighestDepth(), {${options}}));${cursor}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="draws a rect within graphics object" enabled="true" id="com.powerflasher.fdt.ui.editor.template.rect" name="rect">${target}.graphics.beginFill(0x${ff0000}, ${0});
+${target}.graphics.drawRect(${xPos:value(0)}, ${yPos:value(0)}, ${width:value(100)}, ${height:value(100)});
+${target}.graphics.endFill();</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a RemoteObject" enabled="true" id="com.powerflasher.fdt.ui.editor.template.remoteobject" name="RemoteObject">&lt;${m:mxml_component(RemoteObject)} id="${remoteObjectId}" destination="${destination}" fault="${onFault}(${event})"&gt;&#13;
+	&lt;${mx}:method name="${method}"&gt;&#13;
+		&lt;${mx}:arguments&gt;&#13;
+        	${cursor}&#13;
+        &lt;/${mx}:arguments&gt;&#13;
+	&lt;/${mx}:method&gt;&#13;
+&lt;/${m}&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Removes all the children of a specific display obejct" enabled="true" name="removeChildren">while(${instance}.numChildren &gt; 0) { ${instance}.removeChildAt(0); }</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates an new Script/CDATA section" enabled="true" id="com.powerflasher.fdt.ui.editor.template.script" name="script">&lt;${m:mxml_component(Script)}&gt;
+	&lt;![CDATA[
+		${cursor}
+	]]&gt;
+&lt;/${m}&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Comment separator" enabled="true" name="sep">//__________________________________________________________ </template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="overrides set width/height" enabled="true" name="setsizes">/**&#13;
+ * Sets the width of the component without simply scaling it.&#13;
+ */&#13;
+override public function set width(value:Number):void {&#13;
+	_width = value;&#13;
+	computePositions();&#13;
+}&#13;
+&#13;
+/**&#13;
+ * Sets the height of the component without simply scaling it.&#13;
+ */&#13;
+override public function set height(value:Number):void {&#13;
+	_height = value;&#13;
+	computePositions();&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="creates a setter function" enabled="true" id="com.powerflasher.fdt.ui.editor.template.setter" name="setter">${specifier:value(public, protected, private)} function set ${name}(${value} : ${Type}) : void {
+	${cursor}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Create a singleton with its enforcer. AS3 Singleton" enabled="true" name="singleton">package ${enclosing_package} {&#13;
+	&#13;
+	import flash.errors.IllegalOperationError;&#13;
+	&#13;
+	/**&#13;
+	 * Singleton ${enclosing_type}&#13;
+	 * &#13;
+	 * @author ${user}&#13;
+	 */&#13;
+	public class ${enclosing_type} {&#13;
+		&#13;
+		private static var _instance:${enclosing_type};&#13;
+		&#13;
+		&#13;
+		&#13;
+		/* *********** *&#13;
+		 * CONSTRUCTOR *&#13;
+		 * *********** */&#13;
+		/**&#13;
+		 * Creates an instance of &lt;code&gt;${enclosing_type}&lt;/code&gt;.&#13;
+		 */&#13;
+		public function ${enclosing_type}(enforcer:SingletonEnforcer) {&#13;
+			if(enforcer == null) {&#13;
+				throw new IllegalOperationError("A singleton can't be instanciated. Use static accessor 'getInstance()'!");&#13;
+			}&#13;
+			initialize();&#13;
+		}&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ***************** *&#13;
+		 * GETTERS / SETTERS *&#13;
+		 * ***************** */&#13;
+		/**&#13;
+		 * Singleton instance getter.&#13;
+		 */&#13;
+		public static function getInstance():${enclosing_type} {&#13;
+			if(_instance == null)_instance = new  ${enclosing_type}(new SingletonEnforcer());&#13;
+			return _instance;	&#13;
+		}&#13;
+&#13;
+&#13;
+&#13;
+		/* ****** *&#13;
+		 * PUBLIC *&#13;
+		 * ****** */&#13;
+&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ******* *&#13;
+		 * PRIVATE *&#13;
+		 * ******* */&#13;
+		/**&#13;
+		 * Initialize the class.&#13;
+		 */&#13;
+		private function initialize():void {&#13;
+			&#13;
+		}&#13;
+		&#13;
+	}&#13;
+}&#13;
+&#13;
+internal class SingletonEnforcer{}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as2" deleted="false" description="Creates complete Singleton" enabled="true" id="com.powerflasher.fdt.ui.editor.template.as2.singleton" name="singleton">/**
+ * @author ${user}
+ */
+class ${enclosing_package_and_type} {
+	
+	private static var instance : ${enclosing_type};
+	
+	/**
+	 * @return singleton instance of ${enclosing_type}
+	 */
+	public static function getInstance() : ${enclosing_type} {
+		if (instance == null)
+			instance = new ${enclosing_type}();
+		return instance;
+	}
+	
+	private function ${enclosing_type}() {
+		${cursor}
+	}
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds Style Metadata." enabled="true" id="com.powerflasher.fdt.ui.editor.template.styleMetadata" name="Style">[Style(name="${styleName}")]</template><template autoinsert="true" context="com.pf.fdt.ui.editor.template.actionscript" deleted="false" description="créatio nd'un bloc switch" enabled="true" name="swc">switch (${condition}) {&#13;
+	case ${cursor}:&#13;
+		${cursor}&#13;
+		break;&#13;
+	default:&#13;
+		break;	&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Adds SWF Metadata." enabled="true" id="com.powerflasher.fdt.ui.editor.template.SWFMetadata" name="SWF">[SWF(backgroundColor="#${FFFFFF}", frameRate="${31}", width="${640}", height="${480}")]</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="creates a switch block" enabled="true" id="com.powerflasher.fdt.ui.editor.template.switchBlock" name="switchBlock">switch(${expression}){
+	case ${result}:
+		${cursor}
+		break;
+	default:
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as2" deleted="false" description="trace current method" enabled="true" id="com.powerflasher.fdt.ui.editor.template.as2.systrace" name="systrace">trace("${enclosing_type}.${enclosing_method}(${enclosing_method_arguments})");</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="trace current method" enabled="true" id="com.powerflasher.fdt.ui.editor.template.systrace" name="systrace">trace("${enclosing_type}.${enclosing_method}(${enclosing_method_arguments})");</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="tag bean template" enabled="true" name="tagbean">package ${enclosing_package} {&#13;
+	import com.nurun.core.lang.vo.ValueObject;&#13;
+	import com.tagheuer.core.beans.AbstractTagBean;&#13;
+	import com.tagheuer.core.beans.ITagBean;&#13;
+	import com.tagheuer.core.common.Debuggable;&#13;
+	import com.tagheuer.core.vo.gui.GUIState;&#13;
+&#13;
+	import flash.events.Event;&#13;
+	import flash.geom.Rectangle;&#13;
+&#13;
+	/**&#13;
+	 * Builds the ${enclosing_type} view.&#13;
+	 * &#13;
+	 * @author ${user}&#13;
+	 */&#13;
+	public class ${enclosing_type} extends AbstractTagBean implements ITagBean, Debuggable {&#13;
+		&#13;
+		private var _data:${vo};&#13;
+		private var _state:GUIState;&#13;
+&#13;
+		&#13;
+		&#13;
+		&#13;
+		/* *********** *&#13;
+		 * CONSTRUCTOR *&#13;
+		 * *********** */&#13;
+		/**&#13;
+		 * Creates an instance of &lt;code&gt;${enclosing_type}&lt;/code&gt;.&#13;
+		 */&#13;
+		public function ${enclosing_type}() {&#13;
+			_depth = 90;&#13;
+		}&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ***************** *&#13;
+		 * GETTERS / SETTERS *&#13;
+		 * ***************** */&#13;
+		/**&#13;
+		 * @inheritDoc&#13;
+		 */		&#13;
+		public function get debugRect():Rectangle {return null;}&#13;
+		&#13;
+		/**&#13;
+		 * @inheritDoc&#13;
+		 */&#13;
+		public function get debugTrace():String {return null;}&#13;
+		&#13;
+		/**&#13;
+		 * @inheritDoc&#13;
+		 */&#13;
+		override public function setState(state:*):void { _state = state as GUIState; }&#13;
+		&#13;
+		/**&#13;
+		 * @inheritDoc&#13;
+		 */&#13;
+		override public function getState():* { return _state; }&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ****** *&#13;
+		 * PUBLIC *&#13;
+		 * ****** */&#13;
+		/**&#13;
+		 * @inheritDoc&#13;
+		 */&#13;
+		override public function initialise(data:ValueObject):void {&#13;
+			_data = data as ${vo};&#13;
+			onReady();&#13;
+		}&#13;
+&#13;
+		/**&#13;
+		 * @inheritDoc&#13;
+		 */&#13;
+		override public function start():void {&#13;
+			//create views&#13;
+			addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);&#13;
+		}&#13;
+&#13;
+		/**&#13;
+		 * @inheritDoc&#13;
+		 */&#13;
+		override public function update():void {&#13;
+			//Get a param example : _state.getBooleanParam("myParamID");&#13;
+			onUpdate();&#13;
+		}&#13;
+&#13;
+		/**&#13;
+		 * @inheritDoc&#13;
+		 */&#13;
+		override public function show():void {&#13;
+			super.show();&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Makes the component garbage collectable.&#13;
+		 */&#13;
+		override public function dispose():void {&#13;
+			super.dispose();&#13;
+			//remove event listeners&#13;
+			removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);&#13;
+		}&#13;
+&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ******* *&#13;
+		 * PRIVATE *&#13;
+		 * ******* */&#13;
+		&#13;
+		/**&#13;
+		 * Called when the stage is available.&#13;
+		 */&#13;
+		private function addedToStageHandler(event:Event):void {&#13;
+			removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);&#13;
+			stage.addEventListener(Event.RESIZE, computePositions);&#13;
+			computePositions();&#13;
+		}&#13;
+&#13;
+		/**&#13;
+		 * Resizes and replaces the elements&#13;
+		 */&#13;
+		private function computePositions(event:Event = null):void {&#13;
+			&#13;
+		}&#13;
+	}&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Creates tag MVC model" enabled="true" name="tagmodel">package ${enclosing_package} {&#13;
+	import com.tagheuer.core.vo.frontofficeuser.FrontOfficeUser;&#13;
+	import com.nurun.core.lang.vo.ValueObject;&#13;
+	import com.nurun.structure.beans.events.BeanDataEvent;&#13;
+	import com.nurun.structure.beans.model.AbstractBeanModel;&#13;
+	import com.nurun.structure.beans.model.IBeanModel;&#13;
+	import com.nurun.structure.mvc.model.events.ModelEvent;&#13;
+	import com.tagheuer.core.beans.ApplicationBeanMessage;&#13;
+	import com.tagheuer.core.vo.gui.GUIState;&#13;
+	import com.tagheuer.core.vo.navigation.NavigationLink;&#13;
+&#13;
+	/**&#13;
+	 * &#13;
+	 * @author ${user}&#13;
+	 */&#13;
+	public class ${enclosing_type} extends AbstractBeanModel implements IBeanModel {&#13;
+		&#13;
+		private var _data:${vo};&#13;
+		private var _currentState:GUIState;&#13;
+		private var _user:FrontOfficeUser;&#13;
+		private var _isStarted:Boolean;&#13;
+&#13;
+		&#13;
+		&#13;
+		/* *********** *&#13;
+		 * CONSTRUCTOR *&#13;
+		 * *********** */&#13;
+		/**&#13;
+		 * Creates an instance of &lt;code&gt;${enclosing_type}&lt;/code&gt;.&#13;
+		 */&#13;
+		public function ${enclosing_type}() {&#13;
+			super();&#13;
+			_controler = new ${controler}();&#13;
+			_controler.initialise(this);&#13;
+		}&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ***************** *&#13;
+		 * GETTERS / SETTERS *&#13;
+		 * ***************** */&#13;
+		/**&#13;
+		 * Gets the data.&#13;
+		 */&#13;
+		public function get data():${vo} { return _data; }&#13;
+		&#13;
+		/**&#13;
+		 * Gets the current user.&#13;
+		 */&#13;
+		public function get user():FrontOfficeUser { return _user; }&#13;
+		&#13;
+		/**&#13;
+		 * Sets the current user.&#13;
+		 */&#13;
+		public function set user(value:FrontOfficeUser):void {&#13;
+			_user = value;&#13;
+			if(_isStarted) update();&#13;
+		}&#13;
+&#13;
+&#13;
+&#13;
+		/* ****** *&#13;
+		 * PUBLIC *&#13;
+		 * ****** */&#13;
+		&#13;
+		/**&#13;
+		 * Initializes the model.&#13;
+		 */&#13;
+		override public function initialise(data:ValueObject):void {&#13;
+			if(data is ${vo}) _data = data as ${vo};&#13;
+			onReady();&#13;
+		}&#13;
+&#13;
+		/**&#13;
+		 * Starts the application&#13;
+		 */&#13;
+		override public function start():void {&#13;
+			_isStarted = true;&#13;
+			update();&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Called to change the bean's state.&#13;
+		 */&#13;
+		override public function setState(state:*):void {&#13;
+			_currentState = state as GUIState;&#13;
+			update();&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Dispatches a &lt;code&gt;BEAN_MESSAGE&lt;/code&gt; event pointing toward the given&#13;
+		 * &lt;code&gt;NavigationLink&lt;/code&gt; instance&#13;
+		 * &#13;
+		 * @param link The NavigationLink object that will be dispatched in the BEAN_MESSAGE&#13;
+		 * @see com.th.monaco.vo.NavigationLink com.th.monaco.vo.NavigationLink&#13;
+		 */&#13;
+		public function navigateToLink(link:NavigationLink):void {&#13;
+			dispatchEvent(new BeanDataEvent(BeanDataEvent.DISPATCH_MESSAGE, null, ApplicationBeanMessage.NAVIGATE, link));&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Dispatches a &lt;code&gt;BEAN_MESSAGE&lt;/code&gt; event pointing toward the given&#13;
+		 * entity id.&#13;
+		 * &#13;
+		 * @param id of the entity to navigate to.&#13;
+		 */&#13;
+		public function navigateToEntityId(id:String):void {&#13;
+			dispatchEvent(new BeanDataEvent(BeanDataEvent.DISPATCH_MESSAGE, null, ApplicationBeanMessage.NAVIGATE, id));&#13;
+		}&#13;
+&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ******* *&#13;
+		 * PRIVATE *&#13;
+		 * ******* */&#13;
+		/**&#13;
+		 * Fires an update to the views.&#13;
+		 */&#13;
+		private function update():void {&#13;
+			dispatchEvent(new ModelEvent(ModelEvent.UPDATE, this));&#13;
+		}&#13;
+	}&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="tag MVC bean template" enabled="true" name="tagmvcbean">package ${enclosing_package} {&#13;
+	import gs.TweenLite;&#13;
+&#13;
+	import com.nurun.core.lang.vo.ValueObject;&#13;
+	import com.nurun.structure.beans.events.BeanDataEvent;&#13;
+	import com.nurun.structure.beans.events.BeanEvent;&#13;
+	import com.tagheuer.core.beans.AbstractTagMVCBean;&#13;
+	import com.tagheuer.core.beans.ApplicationBeanMessage;&#13;
+	import com.tagheuer.core.beans.ITagBean;&#13;
+	import com.tagheuer.core.common.Debuggable;&#13;
+	import com.tagheuer.core.model.events.TagModelEvent;&#13;
+	import com.tagheuer.core.utils.debug.DebugManager;&#13;
+	import com.tagheuer.core.vo.frontofficeuser.FrontOfficeUser;&#13;
+&#13;
+	import flash.geom.Rectangle;&#13;
+&#13;
+	/**&#13;
+	 * &#13;
+	 * @author ${user}&#13;
+	 */&#13;
+	public class ${enclosing_type} extends AbstractTagMVCBean implements ITagBean, Debuggable {&#13;
+		&#13;
+		private var _user:FrontOfficeUser;&#13;
+&#13;
+		&#13;
+		&#13;
+		&#13;
+		&#13;
+		/* *********** *&#13;
+		 * CONSTRUCTOR *&#13;
+		 * *********** */&#13;
+		/**&#13;
+		 * Creates an instance of &lt;code&gt;${enclosing_type}&lt;/code&gt;.&#13;
+		 */&#13;
+		public function ${enclosing_type}() {&#13;
+			super();&#13;
+			alpha = 0;&#13;
+			DebugManager.getInstance().addTarget(this);&#13;
+			_model = new ${model}();&#13;
+			_depth = 1;&#13;
+		}&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ***************** *&#13;
+		 * GETTERS / SETTERS *&#13;
+		 * ***************** */&#13;
+		/**&#13;
+		 * @inheritDoc&#13;
+		 */&#13;
+		public function get debugRect():Rectangle { return null; }&#13;
+		&#13;
+		/**&#13;
+		 * @inheritDoc&#13;
+		 */&#13;
+		public function get debugTrace():String { return null; } &#13;
+&#13;
+&#13;
+&#13;
+		/* ****** *&#13;
+		 * PUBLIC *&#13;
+		 * ****** */&#13;
+		/**&#13;
+		 * Called to start the bean.&#13;
+		 */&#13;
+		override public function start():void {&#13;
+			//create views&#13;
+			&#13;
+			_container.addEventListener(TagModelEvent.USER_UPDATE, userUpdateHandler);&#13;
+			dispatchEvent(new BeanDataEvent(BeanDataEvent.DISPATCH_MESSAGE, this, ApplicationBeanMessage.GET_MODEL_DATA, "user", setCurrentUser));&#13;
+			_model.start();&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Initializes the bean.&#13;
+		 */&#13;
+		override public function initialise(data:ValueObject):void {&#13;
+			${model}(_model).initialise(data as ${vo});&#13;
+			&#13;
+			dispatchEvent(new BeanEvent(BeanEvent.BEAN_READY, this));&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Makes the bean opening.&#13;
+		 */&#13;
+		override public function show():void {&#13;
+			TweenLite.to(this, 1, {autoAlpha:1, onComplete:onShow});&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Updates the bean.&#13;
+		 */&#13;
+		override public function update():void {&#13;
+			onUpdate();&#13;
+		}&#13;
+&#13;
+&#13;
+		&#13;
+		&#13;
+		/* ******* *&#13;
+		 * PRIVATE *&#13;
+		 * ******* */&#13;
+		&#13;
+		/**&#13;
+		 * Called when the user logs in/out.&#13;
+		 */&#13;
+		public function setCurrentUser(user:FrontOfficeUser):void {&#13;
+			_user = user;&#13;
+			${model}(_model).user = _user;&#13;
+			_model.start();&#13;
+		}&#13;
+		&#13;
+		/**&#13;
+		 * Called when user's log status changes.&#13;
+		 */&#13;
+		private function userUpdateHandler(event:TagModelEvent):void {&#13;
+			_user = event.data as FrontOfficeUser;&#13;
+			${model}(_model).user = _user;&#13;
+		}&#13;
+		&#13;
+	}&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a TextArea" enabled="true" id="com.powerflasher.fdt.ui.editor.template.textarea" name="TextArea">&lt;${m:mxml_component(TextArea)} id="${textAreaId}" width="${400}" height="${100}" /&gt;${cursor}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a Text control instance" enabled="true" id="com.powerflasher.fdt.ui.editor.template.textcontrol" name="TextControl">&lt;${m:mxml_component(Text)} id="${textId}" width="${100}" /&gt;${cursor}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a TextInput" enabled="true" id="com.powerflasher.fdt.ui.editor.template.textinput" name="TextInput">&lt;${m:mxml_component(TextInput)} id="${textInputId}" ${cursor}/&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as2" deleted="false" description="creates toString function" enabled="true" id="com.powerflasher.fdt.ui.editor.template.as2.toString" name="toString">public function toString() : String {
+	return "${enclosing_package_and_type}";
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="creates toString function" enabled="true" id="com.powerflasher.fdt.ui.editor.template.toString" name="toString">/**
+ * Gets a string representation of the value object.
+ */
+public function toString():String {
+	return "[${enclosing_package_and_type} :: ]";
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Trace a message to the MonsterDebugger" enabled="true" name="trace">MonsterDebugger.trace(this, "${cursor}");</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Trace a method and it's arguments to the MonsterDebugger" enabled="true" name="traceme">MonsterDebugger.trace(this, "${enclosing_type}.${enclosing_method}("+arguments+")");</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Trace Débug" enabled="true" name="trd">trace("Debug :: "+${cursor});</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Trace infos" enabled="true" name="tri">trace("Infos :: "+${cursor});</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Trace" enabled="true" name="trl">trace(${cursor});</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Trace Warning" enabled="true" name="trw">trace("Warning :: "+${cursor});</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="Add a try / catch bloc" enabled="true" name="try">try {&#13;
+	${line_selection}${cursor}&#13;
+} catch (e:${Error}){&#13;
+	trace(e.getStackTrace());&#13;
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="creates a try/catch block" enabled="true" id="com.powerflasher.fdt.ui.editor.template.tryCatch" name="tryCatch">try{
+	${cursor}	
+}catch(${error}:${Error}){
+	${cursor}	
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="creates a try/catch/finally block" enabled="true" id="com.powerflasher.fdt.ui.editor.template.tryCatchFinally" name="tryCatchFinally">try{
+	${cursor}	
+}catch(${error}:${Error}){
+	
+}finally{
+	
+}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a VBox" enabled="true" id="com.powerflasher.fdt.ui.editor.template.vbox" name="VBox">&lt;${m:mxml_component(VBox)} &gt;&#13;
+	${cursor}&#13;
+&lt;/${m}&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="" enabled="true" name="vector">new Vector.&lt;${type}&gt;()</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.as3" deleted="false" description="creates local Vector instance with type." enabled="true" id="com.powerflasher.fdt.ui.editor.template.vector" name="vector">var ${name} : Vector.&lt;${type}&gt; = new Vector.&lt;${type}&gt;();</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a ViewStack" enabled="true" id="com.powerflasher.fdt.ui.editor.template.viewstack" name="ViewStack">&lt;${m:mxml_component(ViewStack)} id="${viewStackId}" width="${100}" height="${80}"&gt;&#13;
+	${cursor}&#13;
+&lt;/${m}&gt;</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a VSlider" enabled="true" id="com.powerflasher.fdt.ui.editor.template.vslider" name="VSlider">&lt;${m:mxml_component(VSlider)} id="${vSliderId}" minimum="${min:value(0)}" maximum="${max:value(100)}" value="${value:value(100)}" change="${onSliderChange}(${event})"&#13;
+	snapInterval="${1}" tickInterval="${10}"&#13;
+	dataTipPlacement="${top}" tickColor="${black}" /&gt;${cursor}</template><template autoinsert="true" context="com.powerflasher.fdt.ui.editor.template.mxml" deleted="false" description="Creates a WebService" enabled="true" id="com.powerflasher.fdt.ui.editor.template.webservice" name="WebService">&lt;${m:mxml_component(WebService)} id="${webServiceId}" wsdl="${wsdl}" useProxy="${v1:value(true, false)}" fault="${onFault}(${fault:value(event)})" result="${onResult}(${result:value(event)})" &gt;&#13;
+	&lt;${mx}:operation name="${operation}" resultFormat="${v2:value(object,array,xml,e4x,flashvars,text)}"&gt;&#13;
+		&lt;${mx}:arguments&gt;&#13;
+			${cursor}&#13;
+		&lt;/${mx}:arguments&gt;&#13;
+	&lt;/${mx}:operation&gt;&#13;
+&lt;/${m}&gt;</template></templates>

@@ -1,0 +1,99 @@
+﻿.error { font-family:Arial; font-size:10; color:#CC0000; }
+.link { color:#CC0000; text-decoration:underline; }
+.title { font-family:Arial; font-size:16; font-weight:bold; color:#265367; }
+.content { font-family:Arial; font-size:14; color:#265367; }
+.contentWarn { font-family:Arial; font-size:14; font-weight:bold; color:#7C2526; }
+
+.loginStepTitle { font-family:Arial; font-weight:bold; font-size:16; color:#265367; text-align:center; }
+.loginStepLabel { font-family:Arial; font-size:14; color:#265367; }
+
+.windowTitle { font-family:Arial; font-weight:bold; font-size:12; color:#265367; }
+
+.sysWindowContent { font-family:Arial; font-size:14; color:#265367; text-align:center; }
+.sysWindowMessage { font-family:Arial; font-size:12; font-style:italic; color:#265367; }
+
+.tooltipContent { font-family:Arial; font-size:12; color:#265367; }
+.tooltipContentError { font-family:Arial; font-size:12; color:#752C24; }
+.tooltipContentCenter { font-family:Arial; font-size:12; color:#265367; text-align:center; }
+
+.alertTitle { font-family:Arial; font-size:12; font-weight:bold; color:#265367; }
+.alertContent { font-family:Arial; font-size:12; color:#963636; }
+
+.voteLabel { font-family:Arial; font-size:12; color:#265367; }
+
+.comboboxLabel { font-family:Arial; font-size:12; font-weight:bold; color:#265367; }
+.comboboxItemLabel { font-family:Arial; font-size:12; color:#265367; }
+.comboboxItemLabel_over { font-family:Arial; font-size:12; color:#4D58BB; }
+.comboboxItemLabel_down { font-family:Arial; font-size:12; color:#2F377B; }
+.comboboxItemLabel_selected { font-family:Arial; font-size:12; font-weight:bold; color:#265367; }
+.comboboxItemLabel_selected_over { font-family:Arial; font-size:12; font-weight:bold; color:#4D58BB; }
+.comboboxItemLabel_selected_down { font-family:Arial; font-size:12; font-weight:bold; color:#2F377B; }
+
+.menuItem { font-family:ArialBlack; font-size:20; color:#27799C; flash-alpha: 1; }
+.menuItem_over { font-family:ArialBlack; font-size:20; color:#2E8FB8; }
+.menuItem_down { font-family:ArialBlack; font-size:20; color:#226480; }
+.menuItem_disabled { font-family:ArialBlack; font-size:20; color:#27799C; flash-alpha: .4; }
+
+.radioButton { font-family:Verdana; font-size:11; color:#265367; flash-alpha:1; }
+.radioButton_over { font-family:Verdana; font-size:11; color:#2F657B; flash-alpha:1; }
+.radioButton_selected_down { font-family:Verdana; font-size:11; color:#214756; flash-alpha:1; }
+.radioButton_down_disabled { font-family:Verdana; font-size:11; color:#214756; flash-alpha:.4; }
+
+.radioButton_selected { font-family:Verdana; font-size:11; color:#265367; flash-alpha:1; }
+.radioButton_selected_over { font-family:Verdana; font-size:11; color:#2F657B; flash-alpha:1; }
+.radioButton_selected_down { font-family:Verdana; font-size:11; color:#214756; flash-alpha:1; }
+.radioButton_selected_disabled { font-family:Verdana; font-size:11; color:#214756; flash-alpha:.4; }
+
+.radioButtonGallery { font-family:Verdana; font-size:11; color:#265367; }
+.radioButtonGallery_over { font-family:Verdana; font-size:11; color:#214756; }
+.radioButtonGallery_down { font-family:Verdana; font-size:11; color:#2D3475; }
+
+.buttonBig { font-family:Arial; font-weight:bold; font-size:16; color:#265367; flash-charcase:upper; flash-alpha:1; }
+.buttonBig_over { font-family:Arial; font-weight:bold; font-size:16; color:#2F657B; flash-charcase:upper; }
+.buttonBig_down { font-family:Arial; font-weight:bold; font-size:16; color:#214756; flash-charcase:upper; }
+.buttonBig_disabled { font-family:Arial; font-weight:bold; font-size:16; color:#265367; flash-charcase:upper; flash-alpha:.4; }
+
+.button { font-family:Arial; font-size:10; color:#265367; flash-charcase:upper; flash-alpha:1; }
+.button_over { font-family:Arial; font-size:10; color:#2F657B; flash-charcase:upper; }
+.button_down { font-family:Arial; font-size:10; color:#214756; flash-charcase:upper; }
+.button_disabled { font-family:Arial; font-size:10; color:#265367; flash-charcase:upper; flash-alpha:.4; }
+
+.buttonBig { font-family:Arial; font-size:15; color:#265367; flash-charcase:upper; flash-alpha:1; }
+.buttonBig_over { font-family:Arial; font-size:15; color:#2F657B; flash-charcase:upper; }
+.buttonBig_down { font-family:Arial; font-size:15; color:#214756; flash-charcase:upper; }
+.buttonBig_disabled { font-family:Arial; font-size:15; color:#265367; flash-charcase:upper; flash-alpha:.4; }
+
+.counterTexture { font-family:Arial; font-size:11; color:#265367; flash-charcase:upper; }
+
+.input { font-family:Arial; font-size:14; color:#265367; flash-alpha:1; }
+.inputDefault { font-family:Arial; font-size:14; color:#265367; flash-alpha:.4; }
+.inputError { font-family:Arial; font-size:14; color:#752C24; flash-alpha:1; }
+
+.numericStepper { font-family:Arial; font-size:14; color:#265367; text-align:center; }
+
+.toolBoxTitle { font-family:Arial; font-size:12; font-weight:bold; color:#265367; }
+.toolBoxLabel { font-family:Arial; font-size:12; color:#265367; }
+
+.galleryFormOpener { font-family:ArialBlack; font-size:13; color:#4CA5CD; text-align:center; }
+.galleryFormLabel { font-family:Arial; font-weight:bold; font-size:12; color:#2E7D9E; }
+.galleryFormLabelError { font-family:Arial; font-weight:bold; font-size:12; color:#752C24; }
+.galleryFormServerError { font-family:Arial; font-size:12; color:#752C24; text-align:center; }
+.galleryFormSuccess { font-family:Arial; font-size:12; color:#2E6017; text-align:center; }
+.galleryItemTitle { font-family:Arial; font-weight:bold; font-size:11; color:#1D4F63; }
+.galleryItemInfo { font-family:Arial; font-weight:bold; font-size:10; color:#1D4F63; }
+.galleryBonusInfo { font-family:Arial; font-weight:bold; font-size:10; color:#7EC8E7; }
+
+.dolmenMapFlagAsTouched { font-family:Arial; font-weight:bold; font-size:10; color:#CC0000; }
+.dolmenMapFlagAsTouched_over { font-family:Arial; font-weight:bold; font-size:10; color:#FF0000; }
+.dolmenMapFlagAsTouched_down { font-family:Arial; font-weight:bold; font-size:10; color:#AA0000; }
+.dolmenCaptureTitle { font-family:Arial; font-weight:bold; font-size:12; color:#265367; }
+.dolmenCaptureDetails { font-family:Arial; font-style:italic; font-size:11; color:#265367; }
+
+.gpsKPPWindowTitle { font-family:Arial; font-weight:bold; font-size:14; color:#265367; }
+.gpsKPPId { font-family:Arial; font-weight:bold; font-size:11; color:#770000; }
+.gpsKPPDate { font-family:Arial; font-style:italic; font-size:11; color:#265367; }
+
+.adsKubeStepperLabel { font-family:Arial; font-weight:bold; font-size:12; color:#27799C; text-align:center; }
+.adsEntryTitle { font-family:Arial; font-weight:bold; font-size:12; color:#27799C; }
+
+.wbListEntryLabel { font-family:Arial; font-size:12; color:#265367; }

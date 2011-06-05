@@ -1,0 +1,5 @@
+package com.muxxu.kube.vo {		/**	 * 	 * @author Francois	 */	public class Ad {		private var _xml:XML;		private var _uid:String;
+		private var _title:String;
+		private var _message:String;
+		private var _kubes:String;
+								/* *********** *		 * CONSTRUCTOR *		 * *********** */		/**		 * Creates an instance of <code>Ad</code>.		 */		public function Ad(xml:XML) {			_xml = xml;			initialize();		}						/* ***************** *		 * GETTERS / SETTERS *		 * ***************** */				public function get uid():String { return _uid; }				public function get title():String { return _title; }				public function get message():String { return _message; }				public function get kubes():String { return _kubes; }		/* ****** *		 * PUBLIC *		 * ****** */						/* ******* *		 * PRIVATE *		 * ******* */		/**		 * Initialize the class.		 */		private function initialize():void {			_uid		= _xml.child("uid")[0];			_title		= _xml.child("title")[0];			_message	= _xml.child("message")[0];			_kubes		= _xml.child("kubes")[0];		}	}}
