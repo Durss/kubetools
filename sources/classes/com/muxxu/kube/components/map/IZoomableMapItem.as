@@ -1,0 +1,1 @@
+package com.muxxu.kube.components.map {		/**	 * 	 * @author Francois	 */	public interface IZoomableMapItem {				function setImageByZoomLevel(zoom:int):void;			}}

@@ -1,0 +1,24 @@
+package com.muxxu.kube.commands {	import com.nurun.structure.environnement.label.Label;
+	import com.muxxu.kube.data.SharedObjectManager;
+	import flash.net.URLRequestMethod;
+	import com.muxxu.kube.utils.HTTPPath;
+	import com.muxxu.kube.crypto.RequestEncrypter;
+	import flash.net.URLVariables;
+	import com.nurun.core.commands.AbstractCommand;	import com.nurun.core.commands.events.CommandEvent;	import flash.events.Event;	import flash.events.HTTPStatusEvent;	import flash.events.IOErrorEvent;	import flash.net.URLLoader;	import flash.net.URLRequest;	/**	 * Checks if a user's informations are good.	 * 	 * @author Francois	 */	public class CheckUserCmd extends AbstractCommand {		private var _uid:String;		private var _status:String;
+		private var _pubkey:String;
+		private var _updateMode:Boolean;
+								/* *********** *		 * CONSTRUCTOR *		 * *********** */		/**		 * Creates an instance of <code>CheckUserCmd</code>.		 */		public function CheckUserCmd(uid:String = null, pubkey:String = null) {			_pubkey = pubkey;
+			_uid = uid;
+			if(_pubkey == null && _uid == null) {				if(SharedObjectManager.getInstance().userId != null && SharedObjectManager.getInstance().pubKey != null) {					_updateMode = true;
+					_pubkey = SharedObjectManager.getInstance().pubKey;
+					_uid = SharedObjectManager.getInstance().userId;
+				}			}		}						/* ***************** *		 * GETTERS / SETTERS *		 * ***************** */		/* ****** *		 * PUBLIC *		 * ****** */
+		override public function execute():void {
+			if(_pubkey == null || _uid == null) {				dispatchEvent(new CommandEvent(CommandEvent.COMPLETE));				return;			}			var loader:URLLoader = new URLLoader();			var vars:URLVariables = new URLVariables();			vars.userid = _uid;			vars.pubKey = _pubkey;			var req:URLRequest = new URLRequest(HTTPPath.getPath("checkLogins"));			req.method = URLRequestMethod.POST;			req.data = RequestEncrypter.encrypt(vars);			loader.addEventListener(Event.COMPLETE, loadCompleteHandler);			loader.addEventListener(IOErrorEvent.IO_ERROR, loadErrorHandler);			loader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, httpStatusHandler);			loader.load(req);		}
+				/**		 * Called when HTTP status is available.		 */		private function httpStatusHandler(event:HTTPStatusEvent):void {			_status = "Header = " + event.responseHeaders + "<br />Response URL = " + event.responseURL + "<br />Status = " + event.status + "<br />Type = " + event.type + "<br /><br />Event = " + event;		}
+								/* ******* *		 * PRIVATE *		 * ******* */		/**		 * Called when command completes.		 */		private function loadCompleteHandler(event:Event):void {						var loader:URLLoader = event.target as URLLoader;			try{				var data:XML = new XML(loader.data);			}catch(error:Error) {				dispatchEvent(new CommandEvent(CommandEvent.ERROR, Label.getLabel("loginServerError100")));				return;			}			if(data.child("result")[0] == "2") {				var id:String = data.child("result")[0];
+				// Wrong arguments number				if(_updateMode) {					dispatchEvent(new CommandEvent(CommandEvent.COMPLETE));					return;				}else{					dispatchEvent(new CommandEvent(CommandEvent.ERROR, Label.getLabel("loginServerError"+id)));					return;				}			}
+			data = RequestEncrypter.decrypt(data.child("result")[0]);			if(String(data.child("error")[0]).toLowerCase() == "invalid key") {				if(_updateMode) {					dispatchEvent(new CommandEvent(CommandEvent.COMPLETE));				}else{					dispatchEvent(new CommandEvent(CommandEvent.ERROR, false));				}			}else if(data.child("user") != undefined) {				try {					SharedObjectManager.getInstance().userName = data.child("user").@name;
+					SharedObjectManager.getInstance().userGender = data.child("user").@male == "true"? "m" : "f";					SharedObjectManager.getInstance().userAvatar = data.child("user").@avatar;
+					SharedObjectManager.getInstance().userPoints = parseInt(data.child("user")[0].child("games").child("g").(@game == "kube").child("i").(@key == "Score")[0].replace(/[^0-9]/gi, ""));					SharedObjectManager.getInstance().userZones = parseInt(data.child("user")[0].child("games").child("g").(@game == "kube").child("i").(@key == "Carte")[0].replace(/[^0-9]/gi, ""));
+				}catch(error:Error) {					trace(error.getStackTrace());				}				dispatchEvent(new CommandEvent(CommandEvent.COMPLETE));			}else{				if(_updateMode) {					dispatchEvent(new CommandEvent(CommandEvent.COMPLETE));				}else{					dispatchEvent(new CommandEvent(CommandEvent.ERROR, data.child("error")[0]));				}			}		}		/**		 * Called when command fails.		 */		private function loadErrorHandler(event:IOErrorEvent):void {			//If it's an update mode, do not block loading.			if(_updateMode) {				dispatchEvent(new CommandEvent(CommandEvent.COMPLETE));			}else{				if(_status == null) _status = event.text;				dispatchEvent(new CommandEvent(CommandEvent.ERROR, _status));			}		}	}}
