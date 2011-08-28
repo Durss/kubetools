@@ -6,21 +6,21 @@
 		<path code="labels"><![CDATA[xml/labels.xml]]></path>
 		<path code="textures"><![CDATA[xml/textures.xml]]></path>
 		<path code="authentication"><![CDATA[http://muxxu.com/app/auth?app=kubetools&xml=kube_user&id=${user_id}&key=${key}]]></path>
-		<path code="checkLogins"><![CDATA[${server}kube/apps/kubetools/ws/login.php]]></path>
-		<path code="updater"><![CDATA[${server}kube/apps/kubetools/ws/updater.php]]></path>
-		<path code="getDolmens"><![CDATA[${server}kube/apps/kubetools/ws/getDolmens.php]]></path>
-		<path code="addDolmens"><![CDATA[${server}kube/apps/kubetools/ws/addDolmens.php]]></path>
-		<path code="voteDolmen"><![CDATA[${server}kube/apps/kubetools/ws/voteDolmen.php]]></path>
-		<path code="delDolmen"><![CDATA[${server}kube/apps/kubetools/ws/delDolmen.php]]></path>
-		<path code="addGalleryItem"><![CDATA[${server}kube/apps/kubetools/ws/addGalleryItem.php]]></path>
-		<path code="getGalleryItems"><![CDATA[${server}kube/apps/kubetools/ws/getGalleryItems.php]]></path>
-		<path code="galleryVote"><![CDATA[${server}kube/apps/kubetools/ws/galleryVote.php]]></path>
-		<path code="galleryImages"><![CDATA[${server}kube/apps/kubetools/upload/]]></path>
-		<path code="galleryIcons"><![CDATA[${server}kube/apps/kubetools/upload/icons/]]></path>
-		<path code="uploadKpp"><![CDATA[${server}kube/apps/kubetools/ws/uploadKpp.php]]></path>
-		<path code="downloadKpp"><![CDATA[${server}kube/apps/kubetools/ws/downloadKpp.php]]></path>
-		<path code="addAd"><![CDATA[${server}kube/apps/kubetools/ws/addAd.php]]></path>
-		<path code="getAds"><![CDATA[${server}kube/apps/kubetools/ws/getAds.php]]></path>
+		<path code="checkLogins"><![CDATA[${server}kubetools/ws/login.php]]></path>
+		<path code="updater"><![CDATA[${server}kubetools/ws/updater.php]]></path>
+		<path code="getDolmens"><![CDATA[${server}kubetools/ws/getDolmens.php]]></path>
+		<path code="addDolmens"><![CDATA[${server}kubetools/ws/addDolmens.php]]></path>
+		<path code="voteDolmen"><![CDATA[${server}kubetools/ws/voteDolmen.php]]></path>
+		<path code="delDolmen"><![CDATA[${server}kubetools/ws/delDolmen.php]]></path>
+		<path code="addGalleryItem"><![CDATA[${server}kubetools/ws/addGalleryItem.php]]></path>
+		<path code="getGalleryItems"><![CDATA[${server}kubetools/ws/getGalleryItems.php]]></path>
+		<path code="galleryVote"><![CDATA[${server}kubetools/ws/galleryVote.php]]></path>
+		<path code="galleryImages"><![CDATA[${server}kubetools/upload/]]></path>
+		<path code="galleryIcons"><![CDATA[${server}kubetools/upload/icons/]]></path>
+		<path code="uploadKpp"><![CDATA[${server}kubetools/ws/uploadKpp.php]]></path>
+		<path code="downloadKpp"><![CDATA[${server}kubetools/ws/downloadKpp.php]]></path>
+		<path code="addAd"><![CDATA[${server}kubetools/ws/addAd.php]]></path>
+		<path code="getAds"><![CDATA[${server}kubetools/ws/getAds.php]]></path>
 	</paths>
 	
 	<vars>
@@ -34,8 +34,8 @@
 		<var code="kubesPerBar">125</var>
 		<var code="lang"><![CDATA[fr]]></var>
 		<var code="stats"><![CDATA[false]]></var>
-		<var code="serverOnline"><![CDATA[http://www.muxxu.free.fr/]]></var>
-		<var code="serverOffline"><![CDATA[http://localhost/muxxu/]]></var>
+		<var code="serverOnline"><![CDATA[http://fevermap.org/]]></var>
+		<var code="serverOffline"><![CDATA[http://localhost/muxxu/kube/apps/]]></var>
 	</vars>
 	
 </root>
