@@ -34,7 +34,7 @@
 	--> 
     <id>com.muxxu.kube.KubeTools</id>
 	<filename>KubeTools</filename>
-	<version>0.6.4</version>
+	<version>0.6.5</version>
     
     <name>KubeTools</name>
     <description>Provides some tools for the game kube : http://kube.muxxu.com</description>
