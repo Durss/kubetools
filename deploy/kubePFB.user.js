@@ -16,7 +16,7 @@ if (document.getElementById('swf_minimap') != null) {
 	photoFailBlockerRef= unsafeWindow.document.createElement('div');
 	swfRef.appendChild(photoFailBlockerRef);
 	var isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-	if(isChrome) {
+	if(isChrome && swfRef.getElementsByTagName("embed")[0].getAttribute("wmode") != "direct") {
 		swfRef.getElementsByTagName("embed")[0].setAttribute("wmode", "opaque");
 		with (swfRef.parentNode) appendChild(removeChild(swfRef));
 	}
