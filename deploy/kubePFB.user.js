@@ -15,13 +15,15 @@ if (document.getElementById('swf_minimap') != null) {
 	
 	photoFailBlockerRef= unsafeWindow.document.createElement('div');
 	swfRef.appendChild(photoFailBlockerRef);
+	//Firefox is doing shit so we change the wmode only for chrome.
 	var isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
 	if(isChrome && swfRef.getElementsByTagName("embed")[0].getAttribute("wmode") != "direct") {
 		swfRef.getElementsByTagName("embed")[0].setAttribute("wmode", "opaque");
 		with (swfRef.parentNode) appendChild(removeChild(swfRef));
 	}
 	
-	photoFailBlockerRef.innerHTML = "<div style=\"position: relative; z-index: 5; left: 10px; top: 10px; width: 47px; height: 50px; background-color: rgb(0, 0, 0); background-image: url('http://www.muxxu.free.fr/kube/images/noPhoto.jpg'); background-repeat: no-repeat; background-position: left top;\" id=\""+blockerId+"\" onmouseover=\"document.getElementById('filter').style.display='inline';\"><textarea style=\"display:none; width:46px; height:49px; overflow:hidden; font-size:8px; color:#ffffff; background-color:transparent; border:none;\" id=\"filter\" name=\"filter\" onmouseout=\"document.getElementById('filter').style.display='none';\" /></textarea></div>";
+	photoFailBlockerRef.innerHTML = "<iframe style=\"border:0px; position: relative; z-index: 5; left: 10px; top: 10px; width: 47px; height: 50px; background-color: rgb(0, 0, 0); background-image: url('http://www.muxxu.free.fr/kube/images/noPhoto.jpg'); background-repeat: no-repeat; background-position: left top;\" id=\""+blockerId+"\" onmouseover=\"document.getElementById('filter').style.display='block';\"></iframe>";
+	photoFailBlockerRef.innerHTML += "<textarea style=\"z-index:6; position: relative; z-index: 5; left: 55px; top: -374px; width: 47px; display:none; width:46px; height:49px; overflow:hidden; font-size:9px; color:#ffffff; background-color:transparent; border:none;\" id=\"filter\" name=\"filter\" onmouseout=\"document.getElementById('filter').style.display='none';\" /></textarea>";
 	
 	function setCookie(name, value) {
 		var expDate = new Date();
@@ -83,7 +85,9 @@ if (document.getElementById('swf_minimap') != null) {
 	unsafeWindow.document.getElementById("filter").addEventListener("change", onChangeFilter, true);
 	
 	function checkText() {
-		setPhotoFailBlockerState(unsafeWindow.document.getElementById("infos").innerHTML);
+		if(document.getElementById('filter').style.display == 'none') {
+			setPhotoFailBlockerState(unsafeWindow.document.getElementById("infos").innerHTML);
+		}
 	}
 	
 	function eventIsClean(e) {
