@@ -1,0 +1,46 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document url("http://kube.muxxu.com/") {
+
+body {overflow:hidden;}
+
+.mxtopmaincontent, .game {
+position:absolute;
+top:0px;
+left:0px;
+margin:0 !important;
+}
+.mxtopmaincontent {
+top:32px;
+}
+
+.mxmainmenu {
+top:240px;
+left:0px;
+width:400px;
+}
+
+
+#mxcontent {
+padding:0 !important;
+}
+
+.game #panel {
+position: absolute;
+left:415px;
+top:135px;
+margin:0!important;
+}
+.game #swf_minimap {
+position: absolute;
+left:610px;
+top:0;
+margin:0!important;
+}
+
+#minimap {
+width:800px !important;
+height:800px !important;
+}
+
+}

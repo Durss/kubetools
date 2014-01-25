@@ -1,0 +1,49 @@
+volcan [15;-14]
+Passer à l'arrière pour aller dans le désert en [20;-15]
+Se diriger vers les colonnes et prendre le pont en [24;-15]
+En [34;-15] prendre à droite
+Se diriger vers le volcan à gauche.
+Une fois face au volcan, aller à droite et prendre un pont à peu près dans le coin haut droit.
+Traverser l'île marron/grise et prendre un pont en face à droite [44;-15].
+Arrivé dans les marécages en [15;-14] et se diriger vers le pont en [47;-14]
+Arrivé dans la forêt aller en face à droite en [51;-11]
+Une fois en [52;-10] traverser l'île ennégée en diagonale pour arriver en [54;-7]
+Emprunter le pont pour arriver dans un désert cactus en [68;-5]
+Le traverser dans sa largeur pour aller vers la forêt d'automne en [71; -4]
+Traverser en diagonale (en face à gauche) pour ariver sur un pont en [73;-5]
+Arrivé sur l'île violette en [74; -5] longer la côte à droite pour arriver sur un pont en [76;-5]
+Longer la côte à gauche du volcan pour arriver sur un pont en [79;-3]
+Emprunter le pont pour arriver en [85;-2]
+
+(raccourcit, sauter les 6 prochaines lignes)
+	Traverser l'île feuillue en diagonale pour arriver à un pont en [88;-1]
+	Une fois en [92;-1] prendre à gauche pour arriver sur une île à antennes en [92;-3]
+	Longer la côte sur la gauche pour arriver en zone [90;-5] et traverser à la nage
+	Traverser l'île feuillue en diagonale pour arriver en [88;-7] et arrivé sur une île fleurie à la nage.
+	Traverser en diagonale pour arriver en [85;-11] et traverser à la nage vers l'île ennégée.
+
+Aller sur la droite jusqu'en [85;-14] et traverser à la nage en direction du désert rocheux
+Emprunter le pont en [86;-14] et rejoindre l'île feuillue et se diriger vers le pont en [91;-19]
+Une fois dans la savanne en [91;-20] traverser l'île en diagonale vers un pont en [93;-22]
+Arrivé sur sur l'île fleurie en [93;-24] la traverser jusqu'en [92;-27] et traverser à la nage
+De la zone [92;-28] traverser la forêt basse tout droit jusqu'en [92;-31].
+Là, traverser à la nage jusqu'à la forêt d'automne.
+Traverser cette île jusqu'en [94;-34] et emprunter le pont pour arriver en [100;-32]
+Traverser l'île rocheuse jusqu'en [103;-31].
+Emprunter le pont pour arriver en [126;-30] sur une autre île rocheuse.
+Longer la côte par la gauche pour arriver en [129;-29] et se rendre sur l'île ennégée à la nage
+Une fois en [129;-30] traverser l'île jusqu'en [131;-33].
+Emprunter le pont pour arriver sur une île lunaire en [131;-35].
+Traverser le réseaux d'îles jusqu'en [134;-46] où se trouve un pont allant jusqu'à une forêt d'automne
+Prendre directement à droite pour rejoindre la savanne en [136;-47].
+Traverser la savanne dans toute sa longueur jusqu'en [143;-52] et emprunter le pont d'herbes.
+Arrivé en [145;-55] sur une île lunaire travers le gigantesque réseau d'îles jusqu'en [158;-54].
+
+(pont en construction....[169;-54])
+
+
+
+
+Indices :
+1 : 6D
+2 : QR
